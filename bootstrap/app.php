@@ -11,7 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // $middleware->add(App\Http\Middleware\AdminMiddleware::class); it is used in route group
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\AdminMiddleware::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
