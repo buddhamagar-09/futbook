@@ -14,11 +14,11 @@ class AdminController extends Controller
 
     function Users()
     {
-        return view('admin.users');
+        return view('admin.products.users');
     }
     public function product_add_form()
     {
-        return view('admin.addproductForm');
+        return view('admin.products.addproductForm');
     }
 
     public function product_add(Request $request)
@@ -44,5 +44,30 @@ class AdminController extends Controller
         $product->image = $image_name;
         $product->save();
         return redirect()->back()->with('success', 'Product added successfully!');
+    }
+
+
+    public function view_products()
+    {
+        $products = Product::all();
+        return view('admin.products.viewproduct', ['productlist' => $products]);
+    }
+
+    public function delete_products(string $id)
+    {
+        $product = Product::find($id);
+        $product->delete();
+        return redirect()->back();
+    }
+
+    public function edit_products(string $id)
+    {
+        $edit_product = Product::find($id);
+        return view('admin.products.edit_productform', ['eproduct' => $edit_product]);
+    }
+
+    public function update_products(Request $request, string $id)
+    {
+        
     }
 }
