@@ -68,6 +68,34 @@ class AdminController extends Controller
 
     public function update_products(Request $request, string $id)
     {
-        
+        $request->validate([
+            'product_name' => 'required|string|max:255',
+            'product_description' => 'required|string',
+            'product_price' => 'required|numeric',
+            'product_quantity' => 'required|integer',
+            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $product = Product::findOrFail($id);
+        $product->name = $request->input('product_name');
+        $product->description = $request->input('product_description');
+        $product->price = $request->input('product_price');
+        $product->quantity = $request->input('product_quantity');
+        if ($request->hasFile('product_image')) {
+
+            if ($file = $product->image) {
+                $file_path = public_path('image/products/' . $file);
+                if (file_exists($file_path)) {
+                    unlink($file_path);
+                }
+            }
+
+            $image = $request->File('product_image');
+            $image_name = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('image/products'), $image_name);
+            $product->image = $image_name;
+
+        }
+        $product->save();
+        return redirect()->route('admin.view.products') ->with('success','Product updated Successfully!');
     }
 }
