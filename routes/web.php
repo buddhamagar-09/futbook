@@ -23,6 +23,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/viewProducts',[AdminController::class, 'view_products'])->name('admin.view.products');
     Route::get('/deleteProducts/{id}',[AdminController::class, 'delete_products'])->name('admin.delete.product');
     Route::get('/editProducts/{id}',[AdminController::class, 'edit_products'])->name('admin.edit.product');
-    Route::put('/updateProducts/{id}',[AdminController::class, 'update_products'])->name('admin.update.product');
+    Route::post('/updateProducts/{id}',[AdminController::class, 'update_products'])->name('admin.update.product');
+    Route::get('/users',[AdminController::class, 'view_users'])->name('admin.view.users');
 });
 require __DIR__ . '/auth.php';
