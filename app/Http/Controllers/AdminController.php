@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -97,5 +98,11 @@ class AdminController extends Controller
         }
         $product->save();
         return redirect()->route('admin.view.products') ->with('success','Product updated Successfully!');
+    }
+
+    public function view_users()
+    {
+        $users = User::where('usertype','user')->get();
+        return view('admin.products.users',['users' => $users]);
     }
 }
