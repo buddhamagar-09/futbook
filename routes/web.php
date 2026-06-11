@@ -11,6 +11,10 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
+// frontend routes
+Route::get('/products', [UserController::class, 'products'])->name('products');
+Route::get('/product_details/{id}', [UserController::class, 'product_details'])->name('product_details');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
