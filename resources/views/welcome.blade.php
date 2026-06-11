@@ -1,55 +1,7 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ config('app.name', 'Laravel') }}</title>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
+@include('frontend.tailwindcss')
     <body class="min-h-screen bg-slate-950 text-white antialiased">
         <div class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(244,114,182,0.16),transparent_28%),radial-gradient(circle_at_right,_rgba(59,130,246,0.16),transparent_24%),linear-gradient(180deg,#020617_0%,#0f172a_55%,#111827_100%)]">
-            <header class="border-b border-white/10 bg-slate-950/40 backdrop-blur">
-                <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
-                    <a href="{{ url('/') }}" class="flex items-center gap-3 text-lg font-semibold tracking-tight">
-                        <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/15">F</span>
-                        Futbook
-                    </a>
-
-                    <nav class="hidden items-center gap-8 text-sm text-slate-300 md:flex">
-                        <a href="#featured" class="transition hover:text-white">Featured</a>
-                        <a href="#collections" class="transition hover:text-white">Collections</a>
-                        <a href="#contact" class="transition hover:text-white">Contact</a>
-                    </nav>
-
-                    <div class="flex items-center gap-3 text-sm font-medium">
-                            @if(Auth::check())
-                          <span class="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-2 text-sm font-medium text-white shadow-sm">
-                              Welcome, {{ Auth::user()?->name }}
-                          </span>
-                                  <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
-                            @else
-                                <a href="{{ route('login') }}" class="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-white transition hover:bg-white/10">
-                                    Login
-                                </a>
-
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="rounded-full bg-pink-500 px-4 py-2 text-white transition hover:bg-pink-400">
-                                        Register
-                                    </a>
-                                @endif
-                          
-                 
-                    </div>
-                </div>
-            </header>
+           @include('frontend.header')
 
             <main class="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-24">
                 <section>
