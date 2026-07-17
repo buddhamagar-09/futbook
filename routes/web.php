@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
-});
+})->name('home');
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -29,5 +29,6 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/editProducts/{id}',[AdminController::class, 'edit_products'])->name('admin.edit.product');
     Route::post('/updateProducts/{id}',[AdminController::class, 'update_products'])->name('admin.update.product');
     Route::get('/users',[AdminController::class, 'view_users'])->name('admin.view.users');
+    Route::get('/deleteusers/{id}',[AdminController::class, 'delete_users'])->name('admin.delete.user');
 });
 require __DIR__ . '/auth.php';
