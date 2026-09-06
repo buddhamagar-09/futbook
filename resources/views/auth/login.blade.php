@@ -1,83 +1,434 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Sign in - {{ config('app.name', 'Futbook') }}</title>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(244,114,182,0.08),transparent_28%),radial-gradient(circle_at_right,_rgba(59,130,246,0.08),transparent_24%),linear-gradient(180deg,#020617_0%,#0f172a_55%,#111827_100%)] font-sans text-white">
-        <div class="flex min-h-screen items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-            <div class="mx-auto w-full max-w-4xl">
-                <div class="grid grid-cols-1 gap-6 rounded-3xl sm:grid-cols-2">
-                    <div class="hidden rounded-3xl bg-gradient-to-br from-slate-900/80 to-slate-800/70 p-8 sm:block">
-                        <a href="{{ url('/') }}" class="flex items-center gap-3">
-                            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/15 text-lg font-bold">F</span>
-                            <span class="text-xl font-semibold">Futbook</span>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>Sign in - {{ config('app.name', 'Futbook') }}</title>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", "Segoe UI", sans-serif;
+        }
+
+        .login-bg {
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(37, 99, 235, 0.08),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 90% 90%,
+                    rgba(59, 130, 246, 0.07),
+                    transparent 25%
+                ),
+                #f8fafc;
+        }
+
+        /* Force Breeze inputs to stay white */
+        .login-input {
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            border-color: #cbd5e1 !important;
+        }
+
+        .login-input::placeholder {
+            color: #94a3b8 !important;
+        }
+
+        .login-input:focus {
+            background-color: #ffffff !important;
+            border-color: #2563eb !important;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15) !important;
+            outline: none !important;
+        }
+
+        /* Remove browser autofill dark background */
+        .login-input:-webkit-autofill,
+        .login-input:-webkit-autofill:hover,
+        .login-input:-webkit-autofill:focus {
+            -webkit-text-fill-color: #0f172a !important;
+            -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+            box-shadow: 0 0 0px 1000px #ffffff inset !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    </style>
+</head>
+
+
+<body class="login-bg min-h-screen text-slate-900">
+
+    <div class="flex min-h-screen items-center justify-center px-4 py-10 sm:px-6">
+
+        <div class="w-full max-w-5xl">
+
+            <!-- Main Login Container -->
+            <div class="grid overflow-hidden border border-slate-200 bg-white shadow-xl lg:grid-cols-2">
+
+
+                <!-- ================================= -->
+                <!-- LEFT SIDE -->
+                <!-- ================================= -->
+
+                <div class="relative hidden overflow-hidden bg-slate-900 p-10 lg:flex lg:flex-col lg:justify-between">
+
+                    <!-- Decorative Background -->
+                    <div
+                        class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-blue-600/20 blur-3xl">
+                    </div>
+
+                    <div
+                        class="absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl">
+                    </div>
+
+
+                    <div class="relative z-10">
+
+                        <!-- Logo -->
+                        <a
+                            href="{{ url('/') }}"
+                            class="inline-flex items-center gap-3"
+                        >
+
+                            <span
+                                class="flex h-11 w-11 items-center justify-center bg-blue-600 text-lg font-bold text-white"
+                            >
+                                F
+                            </span>
+
+                            <span class="text-xl font-bold tracking-tight text-white">
+                                Futbook
+                            </span>
+
                         </a>
 
-                        <h2 class="mt-8 text-3xl font-bold">Welcome back</h2>
-                        <p class="mt-4 text-sm text-slate-300">Manage bookings, users, and more — securely and quickly.</p>
 
-                        <div class="mt-8 space-y-4">
-                            <div class="rounded-xl border border-white/10 bg-white/5 p-4">
-                                <p class="text-sm font-medium">Fast, reliable bookings</p>
-                                <p class="mt-1 text-xs text-slate-400">Keep your schedule in sync with real-time updates.</p>
-                            </div>
-                            <div class="rounded-xl border border-white/10 bg-white/5 p-4">
-                                <p class="text-sm font-medium">Secure access</p>
-                                <p class="mt-1 text-xs text-slate-400">Two-factor ready and role-based permissions.</p>
-                            </div>
+                        <!-- Welcome Text -->
+                        <div class="mt-24 max-w-md">
+
+                            <p class="mb-4 text-sm font-semibold uppercase tracking-widest text-blue-400">
+                                Welcome back
+                            </p>
+
+                            <h1 class="text-4xl font-bold leading-tight text-white">
+                                Your games.
+                                <br>
+                                Your bookings.
+                                <br>
+                                <span class="text-blue-400">
+                                    Your time.
+                                </span>
+                            </h1>
+
+                            <p class="mt-6 text-base leading-7 text-slate-400">
+                                Sign in to manage your bookings, check schedules,
+                                and enjoy a simpler way to organize your game time.
+                            </p>
+
                         </div>
+
                     </div>
 
-                    <div class="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur">
-                        <div class="mx-auto w-full max-w-md">
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Sign in to your account</h3>
-                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Enter your credentials below to continue to Futbook.</p>
 
-                            <x-auth-session-status class="mt-4" :status="session('status')" />
+                    <!-- Security Information -->
+                    <div class="relative z-10 border-t border-white/10 pt-6">
 
-                            <form class="mt-6 space-y-4" method="POST" action="{{ route('login') }}">
-                                @csrf
+                        <div class="flex items-center gap-3">
 
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
-                                    <x-text-input id="email" class="mt-1 block w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                            <div
+                                class="flex h-9 w-9 items-center justify-center bg-blue-600/20 text-blue-400"
+                            >
+                                <i class="bi bi-shield-check text-lg"></i>
+                            </div>
+
+                            <div>
+
+                                <p class="text-sm font-medium text-white">
+                                    Secure account access
+                                </p>
+
+                                <p class="text-xs text-slate-500">
+                                    Your information is protected.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================================= -->
+                <!-- RIGHT SIDE -->
+                <!-- ================================= -->
+
+                <div class="flex items-center bg-white p-6 sm:p-10 lg:p-12">
+
+                    <div class="mx-auto w-full max-w-md">
+
+
+                        <!-- Mobile Logo -->
+                        <div class="mb-10 lg:hidden">
+
+                            <a
+                                href="{{ url('/') }}"
+                                class="inline-flex items-center gap-3"
+                            >
+
+                                <span
+                                    class="flex h-11 w-11 items-center justify-center bg-blue-600 text-lg font-bold text-white"
+                                >
+                                    F
+                                </span>
+
+                                <span class="text-xl font-bold text-slate-900">
+                                    Futbook
+                                </span>
+
+                            </a>
+
+                        </div>
+
+
+                        <!-- Header -->
+                        <div>
+
+                            <p class="text-sm font-semibold uppercase tracking-wider text-blue-600">
+                                Account
+                            </p>
+
+                            <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900">
+                                Sign in
+                            </h2>
+
+                            <p class="mt-2 text-sm leading-6 text-slate-500">
+                                Enter your credentials to continue to Futbook.
+                            </p>
+
+                        </div>
+
+
+                        <!-- Session Status -->
+                        <x-auth-session-status
+                            class="mt-5"
+                            :status="session('status')"
+                        />
+
+
+                        <!-- ================================= -->
+                        <!-- LOGIN FORM -->
+                        <!-- ================================= -->
+
+                        <form
+                            class="mt-8 space-y-5"
+                            method="POST"
+                            action="{{ route('login') }}"
+                        >
+
+                            @csrf
+
+
+                            <!-- EMAIL -->
+                            <div>
+
+                                <label
+                                    for="email"
+                                    class="block text-sm font-semibold text-slate-700"
+                                >
+                                    Email address
+                                </label>
+
+
+                                <div class="relative mt-2">
+
+                                    <!-- Email Icon -->
+                                    <div
+                                        class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400"
+                                    >
+                                        <i class="bi bi-envelope"></i>
+                                    </div>
+
+
+                                    <!-- Email Input -->
+                                    <x-text-input
+                                        id="email"
+                                        class="login-input block w-full py-3 pl-11 pr-4 text-sm shadow-sm"
+                                        type="email"
+                                        name="email"
+                                        :value="old('email')"
+                                        required
+                                        autofocus
+                                        autocomplete="username"
+                                        placeholder="you@example.com"
+                                    />
+
                                 </div>
 
-                                <div>
-                                    <label for="password" class="block text-sm font-medium text-slate-700">Password</label>
-                                    <x-text-input id="password" class="mt-1 block w-full" type="password" name="password" required autocomplete="current-password" />
-                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                                </div>
+
+                                <x-input-error
+                                    :messages="$errors->get('email')"
+                                    class="mt-2"
+                                />
+
+                            </div>
+
+
+                            <!-- PASSWORD -->
+                            <div>
 
                                 <div class="flex items-center justify-between">
-                                    <label class="inline-flex items-center">
-                                        <input id="remember_me" type="checkbox" name="remember" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" />
-                                        <span class="ms-2 text-sm text-slate-700">Remember me</span>
+
+                                    <label
+                                        for="password"
+                                        class="block text-sm font-semibold text-slate-700"
+                                    >
+                                        Password
                                     </label>
 
+
                                     @if (Route::has('password.request'))
-                                        <a href="{{ route('password.request') }}" class="text-sm text-slate-700 hover:underline">Forgot your password?</a>
+
+                                        <a
+                                            href="{{ route('password.request') }}"
+                                            class="text-sm font-medium text-blue-600 transition hover:text-blue-700 hover:underline"
+                                        >
+                                            Forgot password?
+                                        </a>
+
                                     @endif
+
                                 </div>
 
-                                <div>
-                                    <button type="submit" class="w-full rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800">Log in</button>
-                                </div>
-                            </form>
 
-                            @if (Route::has('register'))
-                                <p class="mt-6 text-center text-sm text-slate-600">Don't have an account? <a href="{{ route('register') }}" class="font-medium text-slate-900 hover:underline">Sign up</a></p>
-                            @endif
-                        </div>
+                                <div class="relative mt-2">
+
+                                    <!-- Lock Icon -->
+                                    <div
+                                        class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400"
+                                    >
+                                        <i class="bi bi-lock"></i>
+                                    </div>
+
+
+                                    <!-- Password Input -->
+                                    <x-text-input
+                                        id="password"
+                                        class="login-input block w-full py-3 pl-11 pr-4 text-sm shadow-sm"
+                                        type="password"
+                                        name="password"
+                                        required
+                                        autocomplete="current-password"
+                                        placeholder="Enter your password"
+                                    />
+
+                                </div>
+
+
+                                <x-input-error
+                                    :messages="$errors->get('password')"
+                                    class="mt-2"
+                                />
+
+                            </div>
+
+
+                            <!-- REMEMBER ME -->
+                            <div class="flex items-center">
+
+                                <label class="inline-flex cursor-pointer items-center">
+
+                                    <input
+                                        id="remember_me"
+                                        type="checkbox"
+                                        name="remember"
+                                        class="h-4 w-4 border-slate-300 text-blue-600 shadow-sm focus:ring-blue-500"
+                                    >
+
+                                    <span class="ml-2 text-sm text-slate-600">
+                                        Remember me
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+
+                            <!-- LOGIN BUTTON -->
+                            <div>
+
+                                <button
+                                    type="submit"
+                                    class="flex w-full items-center justify-center gap-2 bg-blue-600 px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                >
+
+                                    <i class="bi bi-box-arrow-in-right text-base"></i>
+
+                                    Sign in
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+
+                        <!-- REGISTER -->
+                        @if (Route::has('register'))
+
+                            <div class="mt-8 border-t border-slate-200 pt-6 text-center">
+
+                                <p class="text-sm text-slate-500">
+
+                                    Don't have an account?
+
+                                    <a
+                                        href="{{ route('register') }}"
+                                        class="font-semibold text-blue-600 transition hover:text-blue-700 hover:underline"
+                                    >
+                                        Create an account
+                                    </a>
+
+                                </p>
+
+                            </div>
+
+                        @endif
+
+
+                        <!-- FOOTER -->
+                        <p class="mt-8 text-center text-xs text-slate-400">
+                            © {{ date('Y') }} Futbook. All rights reserved.
+                        </p>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
-    </body>
+
+    </div>
+
+</body>
+
 </html>
+
