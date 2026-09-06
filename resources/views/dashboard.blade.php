@@ -1,518 +1,581 @@
 @include('frontend.tailwindcss')
+@php
+    $products = App\Models\Product::latest()->take(3)->get();
+@endphp
 
-<body class="min-h-screen bg-slate-950 text-white antialiased">
-    <div
-        class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(244,114,182,0.16),transparent_28%),radial-gradient(circle_at_right,_rgba(59,130,246,0.16),transparent_24%),linear-gradient(180deg,#020617_0%,#0f172a_55%,#111827_100%)]">
+<body class="min-h-screen bg-slate-50 text-slate-900 antialiased">
+
+    <div class="min-h-screen bg-slate-50">
         @include('frontend.header')
 
-        <main class="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-24">
-            <section>
-                <p
-                    class="inline-flex rounded-full border border-pink-400/30 bg-pink-500/10 px-4 py-2 text-sm text-pink-200">
-                    New season, new style
-                </p>
 
-                <h1 class="mt-6 max-w-xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                    Minimal ecommerce hero for your storefront.
-                </h1>
+        <main class="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-20">
 
-                <p class="mt-6 max-w-xl text-base leading-7 text-slate-300 sm:text-lg">
-                    Present your products, highlight special offers, and give shoppers a clean path to log in or create
-                    an account.
-                </p>
+            <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
 
-                <div class="mt-8 flex flex-wrap gap-3">
-                    <a href="#collections"
-                        class="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-200">
-                        Shop Collection
-                    </a>
-                    <a href="#contact"
-                        class="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
-                        Contact Us
-                    </a>
-                </div>
 
-                <div id="collections" class="mt-10 grid gap-4 sm:grid-cols-3">
-                    <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                        <p class="text-sm font-semibold">Fast delivery</p>
-                        <p class="mt-1 text-sm text-slate-300">Quick shipping options</p>
-                    </div>
-                    <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                        <p class="text-sm font-semibold">Fresh drops</p>
-                        <p class="mt-1 text-sm text-slate-300">New products weekly</p>
-                    </div>
-                    <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                        <p class="text-sm font-semibold">Member access</p>
-                        <p class="mt-1 text-sm text-slate-300">Secure login portal</p>
-                    </div>
-                </div>
-            </section>
+                <!-- LEFT CONTENT -->
+                <section>
 
-            <section id="featured" class="relative">
-                <div class="absolute -inset-6 rounded-[2rem] bg-pink-500/10 blur-3xl"></div>
-                <div
-                    class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-2xl shadow-black/30 backdrop-blur">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-sm text-slate-300">Featured item</p>
-                            <h2 class="mt-1 text-2xl font-semibold">Streetwear Set</h2>
-                        </div>
-                        <span
-                            class="rounded-full bg-pink-500/20 px-3 py-1 text-xs font-semibold text-pink-200">-25%</span>
+                    <!-- Small Label -->
+                    <div class="mb-6 inline-flex items-center gap-2 border border-blue-100 bg-blue-50 px-3 py-1.5">
+
+                        <span class="h-2 w-2 rounded-full bg-blue-600"></span>
+
+                        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600">
+                            New Season Collection
+                        </span>
+
                     </div>
 
-                    <div class="mt-6 rounded-[1.75rem] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 p-6">
-                        <div class="grid gap-4 sm:grid-cols-2">
-                            <div class="rounded-[1.5rem] border border-white/10 bg-white/5 p-4">
-                                <div
-                                    class="flex h-44 items-center justify-center rounded-[1.25rem] bg-white text-slate-900">
-                                    <svg viewBox="0 0 24 24" class="h-14 w-14" fill="none" stroke="currentColor"
-                                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                                        aria-hidden="true">
-                                        <path d="M4 7h16l-1.5 13H5.5L4 7Z" />
-                                        <path d="M9 7a3 3 0 0 1 6 0" />
-                                    </svg>
-                                </div>
-                            </div>
 
-                            <div
-                                class="flex flex-col justify-between rounded-[1.5rem] border border-white/10 bg-white/5 p-4">
-                                <div>
-                                    <p class="text-sm text-slate-300">From</p>
-                                    <p class="mt-1 text-3xl font-bold">$59.00</p>
-                                    <p class="mt-3 text-sm leading-6 text-slate-300">Clean product display with a simple
-                                        call to action.</p>
-                                </div>
+                    <!-- Heading -->
+                    <h1
+                        class="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
 
-                                <div class="mt-6 flex gap-3">
-                                    <a href="{{ route('login') }}"
-                                        class="flex-1 rounded-full bg-white px-4 py-3 text-center text-sm font-semibold text-slate-950 transition hover:bg-slate-200">
-                                        Login
-                                    </a>
-                                    @if (Route::has('register'))
-                                        <a href="{{ route('register') }}"
-                                            class="flex-1 rounded-full border border-white/15 bg-white/5 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-white/10">
-                                            Register
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+                        Discover your
+                        <span class="text-blue-600">
+                            perfect style.
+                        </span>
 
-        <!-- products section -->
-        <section id="products" class="mx-auto max-w-6xl px-6 py-16 lg:px-8">
-            <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-                <div>
-                    <p
-                        class="inline-flex rounded-full border border-pink-400/30 bg-pink-500/10 px-4 py-2 text-sm text-pink-200">
-                        Shop the drop
+                    </h1>
+
+
+                    <!-- Description -->
+                    <p class="mt-6 max-w-xl text-base leading-7 text-slate-500 sm:text-lg">
+
+                        Explore our latest collection of quality products designed
+                        to bring style, comfort, and value to your everyday life.
+
                     </p>
-                    <h2 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+
+
+                    <!-- Buttons -->
+                    <div class="mt-8 flex flex-wrap gap-3">
+
+                        <a href="#collections"
+                            class="inline-flex items-center gap-2 bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white transition duration-200 hover:bg-blue-700">
+
+                            Shop Collection
+
+                            <i class="bi bi-arrow-right"></i>
+
+                        </a>
+
+
+                        <a href="#contact"
+                            class="inline-flex items-center gap-2 border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition duration-200 hover:border-slate-400 hover:bg-slate-50">
+
+                            Contact Us
+
+                            <i class="bi bi-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- Features -->
+                    <div id="collections" class="mt-12 grid grid-cols-1 border-y border-slate-200 sm:grid-cols-3">
+
+                        <!-- Feature 1 -->
+                        <div class="border-b border-slate-200 py-5 sm:border-b-0 sm:border-r sm:px-5">
+
+                            <div class="mb-3 flex h-9 w-9 items-center justify-center bg-blue-50 text-blue-600">
+
+                                <i class="bi bi-truck text-lg"></i>
+
+                            </div>
+
+                            <p class="text-sm font-semibold text-slate-900">
+                                Fast Delivery
+                            </p>
+
+                            <p class="mt-1 text-xs leading-5 text-slate-500">
+                                Quick and reliable shipping
+                            </p>
+
+                        </div>
+
+
+                        <!-- Feature 2 -->
+                        <div class="border-b border-slate-200 py-5 sm:border-b-0 sm:border-r sm:px-5">
+
+                            <div class="mb-3 flex h-9 w-9 items-center justify-center bg-blue-50 text-blue-600">
+
+                                <i class="bi bi-stars text-lg"></i>
+
+                            </div>
+
+                            <p class="text-sm font-semibold text-slate-900">
+                                Fresh Arrivals
+                            </p>
+
+                            <p class="mt-1 text-xs leading-5 text-slate-500">
+                                New products added regularly
+                            </p>
+
+                        </div>
+
+
+                        <!-- Feature 3 -->
+                        <div class="py-5 sm:px-5">
+
+                            <div class="mb-3 flex h-9 w-9 items-center justify-center bg-blue-50 text-blue-600">
+
+                                <i class="bi bi-shield-check text-lg"></i>
+
+                            </div>
+
+                            <p class="text-sm font-semibold text-slate-900">
+                                Secure Shopping
+                            </p>
+
+                            <p class="mt-1 text-xs leading-5 text-slate-500">
+                                Safe and protected checkout
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+
+                <!-- RIGHT FEATURED PRODUCT -->
+                <section id="featured">
+
+                    @php
+                        $featuredProduct = $products->first();
+                    @endphp
+
+                    @if ($featuredProduct)
+
+                        <div class="border border-slate-200 bg-white p-4 shadow-sm">
+
+                            <!-- Image -->
+                            <div class="relative overflow-hidden bg-slate-100">
+
+                                <!-- Discount -->
+                                <div
+                                    class="absolute left-5 top-5 z-10 bg-blue-600 px-3 py-1.5 text-xs font-semibold text-white">
+                                    -25%
+                                </div>
+
+                                <div class="h-[420px] overflow-hidden sm:h-[480px]">
+
+                                    <img src="{{ asset('image/products/' . $featuredProduct->image) }}"
+                                        alt="{{ $featuredProduct->name }}"
+                                        class="h-full w-full object-cover transition duration-500 hover:scale-105" />
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Product Info -->
+                            <div class="p-5">
+
+                                <div class="flex items-start justify-between gap-4">
+
+                                    <div>
+
+                                        <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">
+                                            Featured Product
+                                        </p>
+
+                                        <h2 class="mt-1 text-2xl font-bold text-slate-900">
+                                            {{ $featuredProduct->name }}
+                                        </h2>
+
+                                    </div>
+
+
+                                    <!-- Rating -->
+                                    <div class="flex items-center gap-1 text-sm text-amber-400">
+
+                                        <i class="bi bi-star-fill"></i>
+
+                                        <span class="ml-1 text-xs font-medium text-slate-500">
+                                            5.0
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Price -->
+                                <div class="mt-4 flex items-center justify-between">
+
+                                    <span class="text-2xl font-bold text-slate-900">
+                                        Rs {{ number_format($featuredProduct->price, 2) }}
+                                    </span>
+
+                                    <span class="text-sm text-slate-400 line-through">
+                                        Rs {{ number_format($featuredProduct->price * 1.33, 2) }}
+                                    </span>
+
+                                </div>
+
+
+                                <!-- Description -->
+                                <p class="mt-3 line-clamp-2 text-sm leading-6 text-slate-500">
+                                    {{ $featuredProduct->description }}
+                                </p>
+
+
+                                <!-- CTA -->
+                                <div class="mt-5 flex gap-3">
+
+                                    <a href="{{ route('product_details', $featuredProduct->id) }}"
+                                        class="flex flex-1 items-center justify-center gap-2 bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
+
+                                        View Product
+
+                                        <i class="bi bi-arrow-right"></i>
+
+                                    </a>
+
+
+                                    <a href="{{ route('login') }}"
+                                        class="flex h-11 w-11 items-center justify-center border border-slate-300 text-slate-700 transition hover:border-blue-500 hover:bg-blue-50 hover:text-blue-600"
+                                        aria-label="Login">
+
+                                        <i class="bi bi-person"></i>
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    @endif
+
+                </section>
+
+
+
+            </div>
+
+        </main>
+        <!-- Products Section -->
+        <section id="products" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+
+            <!-- Section Header -->
+            <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+
+                <div>
+                    <span
+                        class="inline-flex items-center gap-2 border border-blue-100 bg-blue-50 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-blue-600">
+                        <i class="bi bi-grid"></i>
+                        Shop the collection
+                    </span>
+
+                    <h2 class="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
                         Popular products
                     </h2>
-                    <p class="mt-3 max-w-2xl text-base leading-7 text-slate-300">
-                        Browse our latest arrivals. Clean cards, clear pricing, and quick actions.
+
+                    <p class="mt-3 max-w-2xl text-base leading-7 text-slate-500">
+                        Explore some of our most popular styles, selected for quality,
+                        comfort, and everyday fashion.
                     </p>
                 </div>
 
-                <a href="#collections"
-                    class="inline-flex rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10">
-                    View all
+                <a href="{{ route('products') }}"
+                    class="inline-flex w-fit items-center gap-2 border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-blue-600 hover:bg-blue-600 hover:text-white">
+
+                    View all products
+                    <i class="bi bi-arrow-right"></i>
+
                 </a>
+
             </div>
 
-            <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                <!-- Product Card -->
-                <article
-                    class="group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-5 shadow-xl shadow-black/20 transition hover:border-white/20 hover:bg-white/[0.07]">
-                    <div
-                        class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-pink-500/10 blur-2xl transition group-hover:bg-pink-500/20">
-                    </div>
 
-                    <div class="relative">
-                        <div class="flex items-start justify-between gap-3">
-                            <span
-                                class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300">
-                                Best seller
-                            </span>
-                            <span class="rounded-full bg-pink-500/20 px-3 py-1 text-xs font-semibold text-pink-200">
+            <!-- Products Grid -->
+            <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+                @foreach ($products as $product)
+
+                    <!-- Product Card -->
+                    <article
+                        class="group overflow-hidden border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg">
+
+                        <!-- Product Image -->
+                        <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+
+                            <img src="{{ asset('image/products/' . $product->image) }}" alt="{{ $product->name }}"
+                                class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+
+                            <!-- Discount Badge -->
+                            <span class="absolute left-4 top-4 bg-blue-600 px-3 py-1.5 text-xs font-bold text-white">
                                 -25%
                             </span>
+
+                            <!-- Wishlist -->
+                            <button type="button"
+                                class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-blue-600 hover:text-white"
+                                aria-label="Add to wishlist">
+
+                                <i class="bi bi-heart"></i>
+
+                            </button>
+
                         </div>
 
-                        <div
-                            class="mt-4 overflow-hidden rounded-[1.25rem] border border-white/10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 p-4">
-                            <div
-                                class="flex h-44 items-center justify-center rounded-[1rem] bg-white text-slate-900 transition group-hover:scale-[1.02]">
-                                <svg viewBox="0 0 24 24" class="h-14 w-14" fill="none" stroke="currentColor"
-                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                                    aria-hidden="true">
-                                    <path d="M4 7h16l-1.5 13H5.5L4 7Z" />
-                                    <path d="M9 7a3 3 0 0 1 6 0" />
-                                </svg>
-                            </div>
-                        </div>
 
-                        <div class="mt-5">
-                            <h3 class="text-lg font-semibold text-white">Streetwear Set</h3>
-                            <div class="mt-2 flex items-baseline gap-2">
-                                <p class="text-2xl font-bold">$59.00</p>
-                                <p class="text-sm text-slate-500 line-through">$79.00</p>
+                        <!-- Product Content -->
+                        <div class="p-5">
+
+                            <!-- Category / Badge -->
+                            <div class="flex items-center justify-between gap-3">
+
+                                <span class="text-xs font-semibold uppercase tracking-wide text-blue-600">
+                                    Best Seller
+                                </span>
+
+                                <div class="flex items-center gap-1 text-sm text-amber-500">
+                                    <i class="bi bi-star-fill"></i>
+                                    <span class="font-medium text-slate-600">4.8</span>
+                                </div>
+
                             </div>
-                            <p class="mt-2 text-sm leading-6 text-slate-300">
-                                Premium fit with a minimal storefront-ready presentation.
+
+
+                            <!-- Product Name -->
+                            <h3 class="mt-3 truncate text-lg font-semibold text-slate-900">
+                                {{ $product->name }}
+                            </h3>
+
+
+                            <!-- Description -->
+                            <p class="mt-2 line-clamp-2 text-sm leading-6 text-slate-500">
+                                {{ $product->description }}
                             </p>
-                        </div>
 
-                        <div class="mt-5 flex gap-3">
-                            <a href="#"
-                                class="flex-1 rounded-full bg-white px-4 py-3 text-center text-sm font-semibold text-slate-950 transition hover:bg-slate-200">
-                                Add to cart
-                            </a>
-                            <a href="#"
-                                class="flex-1 rounded-full border border-white/15 bg-white/5 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-white/10">
-                                View details
-                            </a>
-                        </div>
-                    </div>
-                </article>
 
-                <!-- Product Card -->
-                <article
-                    class="group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-5 shadow-xl shadow-black/20 transition hover:border-white/20 hover:bg-white/[0.07]">
-                    <div
-                        class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-pink-500/10 blur-2xl transition group-hover:bg-pink-500/20">
-                    </div>
+                            <!-- Price -->
+                            <div class="mt-4 flex items-center gap-3">
 
-                    <div class="relative">
-                        <div class="flex items-start justify-between gap-3">
-                            <span
-                                class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300">
-                                Fresh drop
-                            </span>
-                            <span class="rounded-full bg-pink-500/20 px-3 py-1 text-xs font-semibold text-pink-200">
-                                New
-                            </span>
-                        </div>
+                                <span class="text-2xl font-bold text-slate-900">
+                                    Rs {{ number_format($product->price, 2) }}
+                                </span>
 
-                        <div
-                            class="mt-4 overflow-hidden rounded-[1.25rem] border border-white/10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 p-4">
-                            <div
-                                class="flex h-44 items-center justify-center rounded-[1rem] bg-white text-slate-900 transition group-hover:scale-[1.02]">
-                                <svg viewBox="0 0 24 24" class="h-14 w-14" fill="none" stroke="currentColor"
-                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                                    aria-hidden="true">
-                                    <path d="M4 7h16l-1.5 13H5.5L4 7Z" />
-                                    <path d="M9 7a3 3 0 0 1 6 0" />
-                                </svg>
+                                <span class="text-sm text-slate-400 line-through">
+                                    Rs {{ number_format($product->original_price, 2) }}
+                                </span>
+
                             </div>
-                        </div>
 
-                        <div class="mt-5">
-                            <h3 class="text-lg font-semibold text-white">Urban Hoodie</h3>
-                            <div class="mt-2 flex items-baseline gap-2">
-                                <p class="text-2xl font-bold">$45.00</p>
+
+                            <!-- Stock -->
+                            <div class="mt-3 flex items-center gap-2 text-sm">
+
+                                <span class="h-2 w-2 bg-emerald-500"></span>
+
+                                <span class="text-slate-500">
+                                    In stock
+                                </span>
+
                             </div>
-                            <p class="mt-2 text-sm leading-6 text-slate-300">
-                                Soft fleece build with a clean everyday streetwear look.
-                            </p>
-                        </div>
 
-                        <div class="mt-5 flex gap-3">
-                            <a href="#"
-                                class="flex-1 rounded-full bg-white px-4 py-3 text-center text-sm font-semibold text-slate-950 transition hover:bg-slate-200">
-                                Add to cart
-                            </a>
-                            <a href="#"
-                                class="flex-1 rounded-full border border-white/15 bg-white/5 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-white/10">
-                                View details
-                            </a>
-                        </div>
-                    </div>
-                </article>
 
-                <!-- Product Card -->
-                <article
-                    class="group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-5 shadow-xl shadow-black/20 transition hover:border-white/20 hover:bg-white/[0.07]">
-                    <div
-                        class="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-pink-500/10 blur-2xl transition group-hover:bg-pink-500/20">
-                    </div>
+                            <!-- Actions -->
+                            <div class="mt-5 grid grid-cols-2 gap-3">
 
-                    <div class="relative">
-                        <div class="flex items-start justify-between gap-3">
-                            <span
-                                class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300">
-                                Limited
-                            </span>
-                            <span class="rounded-full bg-pink-500/20 px-3 py-1 text-xs font-semibold text-pink-200">
-                                -19%
-                            </span>
-                        </div>
+                                <form action="{{ route('addtocart', $product->id) }}" method="POST">
+                                    @csrf
 
-                        <div
-                            class="mt-4 overflow-hidden rounded-[1.25rem] border border-white/10 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 p-4">
-                            <div
-                                class="flex h-44 items-center justify-center rounded-[1rem] bg-white text-slate-900 transition group-hover:scale-[1.02]">
-                                <svg viewBox="0 0 24 24" class="h-14 w-14" fill="none" stroke="currentColor"
-                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
-                                    aria-hidden="true">
-                                    <path d="M4 7h16l-1.5 13H5.5L4 7Z" />
-                                    <path d="M9 7a3 3 0 0 1 6 0" />
-                                </svg>
+                                    <input type="hidden" name="quantity" value="1">
+
+                                    <button type="submit" class="bg-blue-600 px-4 py-2 text-white">
+                                        <i class="bi bi-cart-plus"></i>
+                                        Add to Cart
+                                    </button>
+                                </form>
+
+                                <a href="{{ route('product_details', $product->id) }}"
+                                    class="inline-flex items-center justify-center gap-2 border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-blue-600 hover:text-blue-600">
+
+                                    View details
+                                    <i class="bi bi-arrow-right"></i>
+
+                                </a>
+
                             </div>
+
                         </div>
 
-                        <div class="mt-5">
-                            <h3 class="text-lg font-semibold text-white">Minimal Sneakers</h3>
-                            <div class="mt-2 flex items-baseline gap-2">
-                                <p class="text-2xl font-bold">$89.00</p>
-                                <p class="text-sm text-slate-500 line-through">$110.00</p>
-                            </div>
-                            <p class="mt-2 text-sm leading-6 text-slate-300">
-                                Lightweight silhouette designed for all-day comfort.
-                            </p>
-                        </div>
+                    </article>
 
-                        <div class="mt-5 flex gap-3">
-                            <a href="#"
-                                class="flex-1 rounded-full bg-white px-4 py-3 text-center text-sm font-semibold text-slate-950 transition hover:bg-slate-200">
-                                Add to cart
-                            </a>
-                            <a href="#"
-                                class="flex-1 rounded-full border border-white/15 bg-white/5 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-white/10">
-                                View details
-                            </a>
-                        </div>
-                    </div>
-                </article>
+                @endforeach
+
             </div>
+
         </section>
 
-        <!-- features section -->
-         <section id="features" class="mx-auto max-w-6xl px-6 py-16 lg:px-8">
-    <div class="text-center">
-        <p class="inline-flex rounded-full border border-pink-400/30 bg-pink-500/10 px-4 py-2 text-sm text-pink-200">
-            Why shop with us
-        </p>
-        <h2 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Built for a better shopping experience
-        </h2>
-        <p class="mx-auto mt-3 max-w-2xl text-base leading-7 text-slate-300">
-            Fast delivery, fresh drops, and secure member access — everything shoppers need in one clean storefront.
-        </p>
-    </div>
+        <!-- Features Section -->
+        <section id="features" class="mx-auto max-w-7xl px-6 py-16 lg:px-8">
 
-    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- Feature 1 -->
-        <div class="group rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition hover:border-white/20 hover:bg-white/[0.07]">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-500/20 text-pink-200">
-                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 7h13v10H3z"/>
-                    <path d="M16 10h4l1 3v4h-5"/>
-                    <circle cx="7.5" cy="17.5" r="1.5"/>
-                    <circle cx="18.5" cy="17.5" r="1.5"/>
-                </svg>
+            <!-- Section Header -->
+            <div class="max-w-3xl">
+
+                <span
+                    class="inline-flex items-center gap-2 border border-blue-100 bg-blue-50 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-blue-600">
+                    <i class="bi bi-stars"></i>
+                    Why shop with us
+                </span>
+
+                <h2 class="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+                    Everything you need for a better shopping experience
+                </h2>
+
+                <p class="mt-3 text-base leading-7 text-slate-500">
+                    From discovering new styles to receiving your order,
+                    Futbook is designed to make every step simple and convenient.
+                </p>
+
             </div>
-            <h3 class="mt-5 text-lg font-semibold text-white">Fast delivery</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-300">
-                Quick shipping options so your orders arrive on time, every time.
-            </p>
-        </div>
-
-        <!-- Feature 2 -->
-        <div class="group rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition hover:border-white/20 hover:bg-white/[0.07]">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-500/20 text-pink-200">
-                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3v3"/>
-                    <path d="M12 18v3"/>
-                    <path d="M3 12h3"/>
-                    <path d="M18 12h3"/>
-                    <path d="M5.6 5.6l2.1 2.1"/>
-                    <path d="M16.3 16.3l2.1 2.1"/>
-                    <path d="M5.6 18.4l2.1-2.1"/>
-                    <path d="M16.3 7.7l2.1-2.1"/>
-                    <circle cx="12" cy="12" r="4"/>
-                </svg>
-            </div>
-            <h3 class="mt-5 text-lg font-semibold text-white">Fresh drops</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-300">
-                New products added weekly so your collection always stays current.
-            </p>
-        </div>
-
-        <!-- Feature 3 -->
-        <div class="group rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition hover:border-white/20 hover:bg-white/[0.07]">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-500/20 text-pink-200">
-                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7l7-4z"/>
-                    <path d="M9 12l2 2 4-4"/>
-                </svg>
-            </div>
-            <h3 class="mt-5 text-lg font-semibold text-white">Member access</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-300">
-                Secure login portal for returning customers and exclusive perks.
-            </p>
-        </div>
-
-        <!-- Feature 4 -->
-        <div class="group rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition hover:border-white/20 hover:bg-white/[0.07]">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-500/20 text-pink-200">
-                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 7h16l-1.5 13H5.5L4 7Z"/>
-                    <path d="M9 7a3 3 0 0 1 6 0"/>
-                </svg>
-            </div>
-            <h3 class="mt-5 text-lg font-semibold text-white">Easy checkout</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-300">
-                A clean cart flow that makes buying simple and frustration-free.
-            </p>
-        </div>
-
-        <!-- Feature 5 -->
-        <div class="group rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition hover:border-white/20 hover:bg-white/[0.07]">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-500/20 text-pink-200">
-                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2v4"/>
-                    <path d="M12 18v4"/>
-                    <path d="M4.9 4.9l2.8 2.8"/>
-                    <path d="M16.3 16.3l2.8 2.8"/>
-                    <path d="M2 12h4"/>
-                    <path d="M18 12h4"/>
-                    <path d="M4.9 19.1l2.8-2.8"/>
-                    <path d="M16.3 7.7l2.8-2.8"/>
-                </svg>
-            </div>
-            <h3 class="mt-5 text-lg font-semibold text-white">Quality products</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-300">
-                Carefully selected items with consistent quality and modern design.
-            </p>
-        </div>
-
-        <!-- Feature 6 -->
-        <div class="group rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition hover:border-white/20 hover:bg-white/[0.07]">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-500/20 text-pink-200">
-                <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 6h16"/>
-                    <path d="M4 12h10"/>
-                    <path d="M4 18h16"/>
-                    <circle cx="18" cy="12" r="2"/>
-                </svg>
-            </div>
-            <h3 class="mt-5 text-lg font-semibold text-white">24/7 support</h3>
-            <p class="mt-2 text-sm leading-6 text-slate-300">
-                Help when you need it, from order questions to returns and refunds.
-            </p>
-        </div>
-    </div>
-</section>
-     
 
 
-        <!-- footer section -->
-        <footer id="contact" class="border-t border-white/10">
-            <div class="mx-auto max-w-6xl px-6 py-16 lg:px-8">
-                <div class="grid gap-12 lg:grid-cols-4">
-                    <div class="lg:col-span-2">
-                        <a href="#" class="text-xl font-bold tracking-tight text-white">
-                            Futbook
-                        </a>
-                        <p class="mt-4 max-w-md text-sm leading-7 text-slate-400">
-                            Minimal ecommerce landing for your storefront. Present products, highlight offers, and guide
-                            shoppers with a clean modern experience.
-                        </p>
+            <!-- Features Grid -->
+            <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-                        <div class="mt-6 flex gap-3">
-                            <a href="#"
-                                class="rounded-full border border-white/15 bg-white/5 p-3 text-white transition hover:bg-white/10"
-                                aria-label="Instagram">
-                                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor"
-                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="3" width="18" height="18" rx="5" />
-                                    <circle cx="12" cy="12" r="4" />
-                                    <path d="M17 7h.01" />
-                                </svg>
-                            </a>
-                            <a href="#"
-                                class="rounded-full border border-white/15 bg-white/5 p-3 text-white transition hover:bg-white/10"
-                                aria-label="Twitter">
-                                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor"
-                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M4 10l9 9" />
-                                    <path d="M13 5l6 6" />
-                                    <path d="M4 4l16 16" />
-                                </svg>
-                            </a>
-                            <a href="#"
-                                class="rounded-full border border-white/15 bg-white/5 p-3 text-white transition hover:bg-white/10"
-                                aria-label="Facebook">
-                                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor"
-                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M14 8h3V5h-3" />
-                                    <path d="M11 14v8" />
-                                    <path d="M7 10v4h4" />
-                                    <rect x="3" y="3" width="18" height="18" rx="4" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h4 class="text-sm font-semibold uppercase tracking-wider text-white">Shop</h4>
-                        <ul class="mt-4 space-y-3 text-sm text-slate-400">
-                            <li><a href="#collections" class="transition hover:text-white">Collections</a></li>
-                            <li><a href="#products" class="transition hover:text-white">All products</a></li>
-                            <li><a href="#featured" class="transition hover:text-white">Featured</a></li>
-                            <li><a href="#" class="transition hover:text-white">New arrivals</a></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 class="text-sm font-semibold uppercase tracking-wider text-white">Support</h4>
-                        <ul class="mt-4 space-y-3 text-sm text-slate-400">
-                            <li><a href="#" class="transition hover:text-white">Contact us</a></li>
-                            <li><a href="#" class="transition hover:text-white">Shipping info</a></li>
-                            <li><a href="#" class="transition hover:text-white">Returns</a></li>
-                            <li><a href="#" class="transition hover:text-white">FAQs</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="mt-12 rounded-[1.75rem] border border-white/10 bg-white/5 p-6 sm:p-8">
-                    <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-                        <div>
-                            <h4 class="text-lg font-semibold text-white">Stay in the loop</h4>
-                            <p class="mt-2 text-sm leading-6 text-slate-400">
-                                Get updates on new drops, offers, and exclusive member access.
-                            </p>
-                        </div>
-
-                        <form class="flex w-full max-w-md flex-col gap-3 sm:flex-row">
-                            <input type="email" placeholder="Enter your email"
-                                class="flex-1 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm text-white placeholder:text-slate-500 outline-none transition focus:border-pink-400/40 focus:bg-white/10">
-                            <button type="submit"
-                                class="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-200">
-                                Subscribe
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
+                <!-- Feature 1 -->
                 <div
-                    class="mt-10 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-                    <p>© 2026 Futbook. All rights reserved.</p>
+                    class="group border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-md">
 
-                    <div class="flex flex-wrap gap-6">
-                        <a href="#" class="transition hover:text-white">Privacy policy</a>
-                        <a href="#" class="transition hover:text-white">Terms of service</a>
-                        <a href="#" class="transition hover:text-white">Cookies</a>
+                    <div
+                        class="flex h-12 w-12 items-center justify-center bg-blue-50 text-xl text-blue-600 transition group-hover:bg-blue-600 group-hover:text-white">
+                        <i class="bi bi-truck"></i>
                     </div>
+
+                    <h3 class="mt-5 text-lg font-semibold text-slate-900">
+                        Fast delivery
+                    </h3>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-500">
+                        Quick and reliable shipping options so your favorite
+                        products reach you right on time.
+                    </p>
+
                 </div>
+
+
+                <!-- Feature 2 -->
+                <div
+                    class="group border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-md">
+
+                    <div
+                        class="flex h-12 w-12 items-center justify-center bg-blue-50 text-xl text-blue-600 transition group-hover:bg-blue-600 group-hover:text-white">
+                        <i class="bi bi-lightning-charge"></i>
+                    </div>
+
+                    <h3 class="mt-5 text-lg font-semibold text-slate-900">
+                        Fresh arrivals
+                    </h3>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-500">
+                        Discover new styles and products regularly to keep
+                        your wardrobe fresh and up to date.
+                    </p>
+
+                </div>
+
+
+                <!-- Feature 3 -->
+                <div
+                    class="group border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-md">
+
+                    <div
+                        class="flex h-12 w-12 items-center justify-center bg-blue-50 text-xl text-blue-600 transition group-hover:bg-blue-600 group-hover:text-white">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+
+                    <h3 class="mt-5 text-lg font-semibold text-slate-900">
+                        Secure shopping
+                    </h3>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-500">
+                        Your account and shopping experience are protected
+                        with secure authentication and trusted checkout.
+                    </p>
+
+                </div>
+
+
+                <!-- Feature 4 -->
+                <div
+                    class="group border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-md">
+
+                    <div
+                        class="flex h-12 w-12 items-center justify-center bg-blue-50 text-xl text-blue-600 transition group-hover:bg-blue-600 group-hover:text-white">
+                        <i class="bi bi-cart-check"></i>
+                    </div>
+
+                    <h3 class="mt-5 text-lg font-semibold text-slate-900">
+                        Easy checkout
+                    </h3>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-500">
+                        A straightforward shopping and checkout process
+                        without unnecessary steps or complications.
+                    </p>
+
+                </div>
+
+
+                <!-- Feature 5 -->
+                <div
+                    class="group border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-md">
+
+                    <div
+                        class="flex h-12 w-12 items-center justify-center bg-blue-50 text-xl text-blue-600 transition group-hover:bg-blue-600 group-hover:text-white">
+                        <i class="bi bi-patch-check"></i>
+                    </div>
+
+                    <h3 class="mt-5 text-lg font-semibold text-slate-900">
+                        Quality products
+                    </h3>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-500">
+                        Carefully selected products that combine quality,
+                        comfort, and modern everyday style.
+                    </p>
+
+                </div>
+
+
+                <!-- Feature 6 -->
+                <div
+                    class="group border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-md">
+
+                    <div
+                        class="flex h-12 w-12 items-center justify-center bg-blue-50 text-xl text-blue-600 transition group-hover:bg-blue-600 group-hover:text-white">
+                        <i class="bi bi-headset"></i>
+                    </div>
+
+                    <h3 class="mt-5 text-lg font-semibold text-slate-900">
+                        Customer support
+                    </h3>
+
+                    <p class="mt-2 text-sm leading-6 text-slate-500">
+                        Get help with orders, products, returns, and other
+                        questions whenever you need assistance.
+                    </p>
+
+                </div>
+
             </div>
-        </footer>
+
+        </section>
+
+        @include('frontend.footer')
     </div>
 </body>
 
