@@ -10,10 +10,13 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/cart', [UserController::class, 'cartpage'])->middleware(['auth', 'verified'])->name('cartpage');
 
 // frontend routes
 Route::get('/products', [UserController::class, 'products'])->name('products');
 Route::get('/product_details/{id}', [UserController::class, 'product_details'])->name('product_details');
+Route::get('/contact', [UserController::class, 'contact'])->name('contact');
+Route::post('/addtocart/{id}', [UserController::class, 'addtocart'])->name('addtocart');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
