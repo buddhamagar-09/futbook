@@ -1,110 +1,291 @@
 @include('frontend.tailwindcss')
 
-<body class="min-h-screen bg-slate-950 text-white antialiased">
-    <div
-        class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(244,114,182,0.16),transparent_28%),radial-gradient(circle_at_right,_rgba(59,130,246,0.16),transparent_24%),linear-gradient(180deg,#020617_0%,#0f172a_55%,#111827_100%)]">
+<body class="min-h-screen bg-slate-50 text-slate-900 antialiased">
+
+    <div class="min-h-screen">
+
         @include('frontend.header')
 
-        <!-- product details section -->
-        <div class="max-w-7xl mx-auto px-4 py-10">
 
-            <div
-                class="bg-white rounded-3xl border border-teal-100 shadow-xl p-6 lg:p-10 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Product Details -->
+        <section class="mx-auto max-w-7xl px-6 py-10 lg:px-8 lg:py-14">
 
-                <!-- IMAGE -->
-                <div
-                    class="aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-cyan-50 to-green-50 border border-teal-100 flex items-center justify-center hover:scale-[1.02] transition">
+            <!-- Back -->
+            <div class="mb-8">
+                <a href="{{ route('products') }}"
+                    class="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-blue-600">
 
-                    <img src="{{ asset('image/products/' . $product->image) }}" alt="Product"
-                        class="w-full h-full object-cover">
+                    <i class="bi bi-arrow-left"></i>
+
+                    Back to products
+                </a>
+            </div>
+
+
+            <!-- Product Layout -->
+            <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+
+
+                <!-- PRODUCT IMAGE -->
+                <div>
+
+                    <div class="overflow-hidden border border-slate-200 bg-white shadow-sm">
+
+                        <div class="aspect-square overflow-hidden bg-slate-100">
+
+                            <img
+                                src="{{ asset('image/products/' . $product->image) }}"
+                                alt="{{ $product->name }}"
+                                class="h-full w-full object-cover transition duration-500 hover:scale-105"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Small Info -->
+                    <div class="mt-5 grid grid-cols-2 gap-4">
+
+                        <div class="border border-slate-200 bg-white p-4">
+                            <div class="mb-2 flex h-9 w-9 items-center justify-center bg-blue-50 text-blue-600">
+                                <i class="bi bi-shield-check text-lg"></i>
+                            </div>
+
+                            <p class="text-sm font-semibold text-slate-900">
+                                Secure Payment
+                            </p>
+
+                            <p class="mt-1 text-xs text-slate-500">
+                                Safe & trusted checkout
+                            </p>
+                        </div>
+
+
+                        <div class="border border-slate-200 bg-white p-4">
+                            <div class="mb-2 flex h-9 w-9 items-center justify-center bg-blue-50 text-blue-600">
+                                <i class="bi bi-truck text-lg"></i>
+                            </div>
+
+                            <p class="text-sm font-semibold text-slate-900">
+                                Fast Delivery
+                            </p>
+
+                            <p class="mt-1 text-xs text-slate-500">
+                                Quick delivery to your door
+                            </p>
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <!-- DETAILS -->
+
+
+                <!-- PRODUCT INFORMATION -->
                 <div class="flex flex-col justify-center">
 
-                    <h1 class="text-4xl font-semibold mb-3">
+                    <!-- Category -->
+                    <span
+                        class="mb-4 inline-flex w-fit items-center border border-blue-100 bg-blue-50 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-blue-600">
+
+                        Product Details
+
+                    </span>
+
+
+                    <!-- Product Name -->
+                    <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+
                         {{ $product->name }}
+
                     </h1>
 
-                    <div class="flex flex-wrap gap-3 mb-4">
-                        <span
-                            class="px-3 py-2 rounded-full text-sm font-semibold border border-teal-100 bg-teal-50 text-teal-700">
-                            <i class="fa-solid fa-shield-heart mr-1"></i>
+
+                    <!-- Rating -->
+                    <div class="mt-4 flex items-center gap-3">
+
+                        <div class="flex items-center gap-1 text-amber-400">
+
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+
+                        </div>
+
+                        <span class="text-sm text-slate-500">
+                            5.0 rating
+                        </span>
+
+                    </div>
+
+
+                    <!-- Price -->
+                    <div class="mt-7">
+
+                        <span class="text-3xl font-bold text-slate-900 sm:text-4xl">
+
+                            Rs {{ number_format($product->price, 2) }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="mt-7 border-t border-slate-200 pt-7">
+
+                        <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-900">
+                            Description
+                        </h2>
+
+                        <p class="text-base leading-7 text-slate-600">
+
+                            {{ $product->description }}
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- Product Features -->
+                    <div class="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2">
+
+                        <div class="flex items-center gap-3 text-sm text-slate-600">
+
+                            <i class="bi bi-check-circle-fill text-blue-600"></i>
+
                             Premium Quality
-                        </span>
 
-                        <span
-                            class="px-3 py-2 rounded-full text-sm font-semibold border border-teal-100 bg-teal-50 text-teal-700">
-                            <i class="fa-solid fa-truck-fast mr-1"></i>
+                        </div>
+
+
+                        <div class="flex items-center gap-3 text-sm text-slate-600">
+
+                            <i class="bi bi-check-circle-fill text-blue-600"></i>
+
+                            Easy 7-day Return
+
+                        </div>
+
+
+                        <div class="flex items-center gap-3 text-sm text-slate-600">
+
+                            <i class="bi bi-check-circle-fill text-blue-600"></i>
+
+                            Secure Checkout
+
+                        </div>
+
+
+                        <div class="flex items-center gap-3 text-sm text-slate-600">
+
+                            <i class="bi bi-check-circle-fill text-blue-600"></i>
+
                             Fast Delivery
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Stock -->
+                    <div class="mt-7 flex items-center gap-4 border-y border-slate-200 py-5">
+
+                        <div class="flex items-center gap-2">
+
+                            <span class="h-2.5 w-2.5 rounded-full bg-green-500"></span>
+
+                            <span class="text-sm font-semibold text-green-600">
+                                In Stock
+                            </span>
+
+                        </div>
+
+                        <span class="text-sm text-slate-500">
+                            {{ $product->quantity }} items available
                         </span>
+
                     </div>
 
-                    <div class="text-3xl font-semibold text-teal-700 mb-4">
-                        Rs {{ number_format($product->price, 2) }}
-                    </div>
-
-                    <div class="text-amber-500 text-lg tracking-wider mb-4">
-                        ★★★★★
-                    </div>
-
-                    <p class="text-gray-600 leading-8 mb-5">
-                        {{ $product->description }}
-                    </p>
-
-                    <div
-                        class="inline-block w-fit px-4 py-2 rounded-full bg-green-100 border border-green-300 text-green-700 font-bold mb-4">
-                        {{ $product->quantity }} items left
-                    </div>
-
-                    <div class="text-sm text-teal-700 mb-4">
-                        In Stock
-                    </div>
-
-                    <div class="space-y-2 text-sm text-gray-600 mb-6">
-                        <div>
-                            <i class="fa-solid fa-circle-check mr-2 text-green-600"></i>
-                            Easy return within 7 days
-                        </div>
-
-                        <div>
-                            <i class="fa-solid fa-lock mr-2 text-green-600"></i>
-                            Secure checkout experience
-                        </div>
-                    </div>
-
+                  
                     <!-- FORM -->
-                    <form class="space-y-4">
+                    <form action="{{ route('addtocart', $product->id) }}" method="post" class="mt-7">
+                        @csrf
+                        <!-- Quantity -->
+                        <div class="mb-5">
 
-                        <div
-                            class="flex items-center gap-3 bg-teal-50 border border-teal-100 rounded-xl px-4 py-3 w-fit">
+                            <label
+                                for="quantity"
+                                class="mb-2 block text-sm font-semibold text-slate-900">
 
-                            <label class="font-semibold text-teal-700">
-                                Quantity:
+                                Quantity
+
                             </label>
 
-                            <input type="number" value="1" min="1"
-                                class="w-20 text-center border border-teal-200 rounded-lg p-2 font-semibold text-teal-700">
+                            <div class="flex w-fit items-center border border-slate-300 bg-white">
+
+                                <button
+                                    type="button"
+                                    class="flex h-11 w-11 items-center justify-center text-slate-600 transition hover:bg-slate-100">
+
+                                    <i class="bi bi-dash"></i>
+
+                                </button>
+
+
+                                <input
+                                    id="quantity"
+                                    type="number"
+                                    value="1"
+                                    min="1"
+                                    name="quantity"
+                                    max="{{ $product->quantity }}"
+                                    class="h-11 w-16 border-x border-slate-300 text-center text-sm font-semibold text-slate-900 outline-none focus:border-blue-500"
+                                >
+
+
+                                <button
+                                    type="button"
+                                    class="flex h-11 w-11 items-center justify-center text-slate-600 transition hover:bg-slate-100">
+
+                                    <i class="bi bi-plus"></i>
+
+                                </button>
+
+                            </div>
+
                         </div>
 
-                        <button type="submit"
-                            class="w-full max-w-xs bg-gradient-to-r from-teal-700 to-teal-800 text-white font-semibold py-4 rounded-full shadow-lg hover:-translate-y-1 transition">
-                            Add to Cart
-                        </button>
 
+                        <!-- Buttons -->
+                        <div class="flex flex-col gap-3 sm:flex-row">
+                                <button type="submit" class="flex flex-1 items-center justify-center gap-2 bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white transition duration-200 hover:bg-blue-700">
+                                    <i class="bi bi-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+
+                        <a
+                                href="{{ route('products') }}"
+                                class="flex flex-1 items-center justify-center gap-2 border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition duration-200 hover:border-slate-400 hover:bg-slate-50">
+                                Continue Shopping
+                            </a>
+                        </div>
                     </form>
 
                 </div>
 
             </div>
 
-        </div>
-        <!-- product details section ends here -->
+        </section>
 
-        <footer id="contact" class="border-t border-white/10 py-6 text-center text-sm text-slate-400">
-            Futbook ecommerce landing page
-        </footer>
+
+        @include('frontend.footer')
+
     </div>
+
 </body>
 
 </html>
