@@ -17,6 +17,8 @@ Route::get('/products', [UserController::class, 'products'])->name('products');
 Route::get('/product_details/{id}', [UserController::class, 'product_details'])->name('product_details');
 Route::get('/contact', [UserController::class, 'contact'])->name('contact');
 Route::post('/addtocart/{id}', [UserController::class, 'addtocart'])->name('addtocart');
+Route::get('/removecart/{id}', [UserController::class, 'removecart'])->name('removecart');
+Route::post('/updatecart/{id}', [UserController::class, 'updatecart'])->name('updatecart');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
