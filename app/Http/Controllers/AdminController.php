@@ -24,29 +24,35 @@ class AdminController extends Controller
 
     public function product_add(Request $request)
     {
+
+
         $request->validate([
             'product_name' => 'required|string|max:255',
             'product_description' => 'required|string',
             'product_price' => 'required|numeric',
             'product_quantity' => 'required|integer',
-            'product_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'product_image' => 'required'
         ]);
 
         $product = new Product();
-        $product->name = $request->input('product_name');
-        $product->description = $request->input('product_description');
-        $product->price = $request->input('product_price');
-        $product->quantity = $request->input('product_quantity');
 
-        //for image
+        $product->name = $request->product_name;
+        $product->description = $request->product_description;
+        $product->price = $request->product_price;
+        $product->quantity = $request->product_quantity;
+
         $image = $request->file('product_image');
         $image_name = uniqid() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('image/products'), $image_name);
-        $product->image = $image_name;
-        $product->save();
-        return redirect()->back()->with('success', 'Product added successfully!');
-    }
 
+        $image->move(public_path('image/products'), $image_name);
+
+        $product->image = $image_name;
+
+        $product->save();
+
+        return back()->with('success', 'Product added successfully!');
+
+    }
 
     public function view_products()
     {
@@ -64,7 +70,7 @@ class AdminController extends Controller
     public function edit_products(string $id)
     {
         $edit_product = Product::find($id);
-        return view('admin.products.edit_productform', ['eproduct' => $edit_product]);
+        return view('admin.products.Product_Edit', ['eproduct' => $edit_product]);
     }
 
     public function update_products(Request $request, string $id)
@@ -97,12 +103,12 @@ class AdminController extends Controller
 
         }
         $product->save();
-        return redirect()->route('admin.view.products') ->with('success','Product updated Successfully!');
+        return redirect()->route('admin.view.products')->with('success', 'Product updated Successfully!');
     }
 
     public function view_users()
     {
-        $users = User::where('usertype','user')->get();
-        return view('admin.products.users',['users' => $users]);
+        $users = User::where('usertype', 'user')->get();
+        return view('admin.products.view_users', ['users' => $users]);
     }
 }
