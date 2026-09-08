@@ -140,37 +140,38 @@
 
 
                                             <!-- Quantity -->
-                                         <form action="{{ route('updatecart', $cartitem->id) }}" method="POST" class="mt-4">
+                                            <form action="{{ route('updatecart', $cartitem->id) }}" method="POST" class="mt-4">
                                                 @csrf
-                                              <div class="mt-4 flex flex-wrap items-center gap-3">
+                                                <div class="mt-4 flex flex-wrap items-center gap-3">
 
-                                                <div class="flex items-center border border-slate-300 bg-white">
+                                                    <div class="flex items-center border border-slate-300 bg-white">
 
-                                                    <button onclick="decreaseqty('{{ $cartitem->id }}')" type="button"
-                                                        class="flex h-9 w-9 items-center justify-center text-slate-600 transition hover:bg-slate-100">
-                                                        <i class="bi bi-dash"></i>
-                                                    </button>
-
-
-                                                    <input type="number" name="quantity" value="{{ $cartitem->quantity }}" min="1" id="qty-{{ $cartitem->id }}"
-                                                        class="h-9 w-12 border-x border-slate-300 text-center text-sm font-semibold text-slate-900 outline-none">
+                                                        <button onclick="decreaseqty('{{ $cartitem->id }}')" type="button"
+                                                            class="flex h-9 w-9 items-center justify-center text-slate-600 transition hover:bg-slate-100">
+                                                            <i class="bi bi-dash"></i>
+                                                        </button>
 
 
-                                                    <button onclick="incrementqty( '{{ $cartitem->id }}' )" type="button"
-                                                        class="flex h-9 w-9 items-center justify-center text-slate-600 transition hover:bg-slate-100">
-                                                        <i class="bi bi-plus"></i>
+                                                        <input type="number" name="quantity" value="{{ $cartitem->quantity }}"
+                                                            min="1" id="qty-{{ $cartitem->id }}" max="{{ $cartitem->product_quantity }}"
+                                                            class="h-9 w-16 border-x border-slate-300 text-center text-sm font-semibold text-slate-900 outline-none">
+
+
+                                                        <button onclick="incrementqty( '{{ $cartitem->id }}' )" type="button"
+                                                            class="flex h-9 w-9 items-center justify-center text-slate-600 transition hover:bg-slate-100">
+                                                            <i class="bi bi-plus"></i>
+                                                        </button>
+
+                                                    </div>
+
+
+                                                    <button type="submit"
+                                                        class="text-xs font-semibold text-blue-600 transition hover:text-blue-700">
+                                                        Update
                                                     </button>
 
                                                 </div>
-
-
-                                                <button type="submit"
-                                                    class="text-xs font-semibold text-blue-600 transition hover:text-blue-700">
-                                                    Update
-                                                </button>
-
-                                            </div>
-                                         </form>
+                                            </form>
 
                                         </div>
 
@@ -307,7 +308,7 @@
 
 
                             <!-- Checkout -->
-                            <a href="#"
+                            <a href="{{ route('checkout') }}"
                                 class="flex w-full items-center justify-center gap-2 bg-blue-600 px-5 py-3.5 text-sm font-semibold text-white transition duration-200 hover:bg-blue-700">
 
                                 Proceed to Checkout
@@ -349,30 +350,10 @@
 
         @include('frontend.footer')
 
-    </div>
+    </div>s
 
 </body>
-<script>
 
-        const incrementqty = (id) => {
-
-            let qtyinput = document.getElementById('qty-' + id);
-            let currentQty = parseInt(qtyinput.value);
-            currentQty++;
-            qtyinput.value = currentQty;
-        }
-
-        const decreaseqty = (id) => {
-
-            let qtyinput = document.getElementById('qty-' + id);
-            let currentQty = parseInt(qtyinput.value);
-            if (currentQty > 1) {
-                currentQty--;
-                qtyinput.value = currentQty;
-            }
-        }
-       
-
-</script>
+<!-- <script src="../js/increment.js"></script> -->
 
 </html>

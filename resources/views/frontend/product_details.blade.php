@@ -228,6 +228,8 @@
                             <div class="flex w-fit items-center border border-slate-300 bg-white">
 
                                 <button
+
+                                onclick="decreaseqty('{{ $product->id }}')"
                                     type="button"
                                     class="flex h-11 w-11 items-center justify-center text-slate-600 transition hover:bg-slate-100">
 
@@ -237,7 +239,7 @@
 
 
                                 <input
-                                    id="quantity"
+                                    id="qty-{{ $product->id }}"
                                     type="number"
                                     value="1"
                                     min="1"
@@ -248,6 +250,7 @@
 
 
                                 <button
+                                    onclick="incrementqty('{{ $product->id }}')"  
                                     type="button"
                                     class="flex h-11 w-11 items-center justify-center text-slate-600 transition hover:bg-slate-100">
 
