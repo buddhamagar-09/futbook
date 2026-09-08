@@ -11,6 +11,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/cart', [UserController::class, 'cartpage'])->middleware(['auth', 'verified'])->name('cartpage');
+Route::get('/checkout', [UserController::class, 'checkout'])->middleware(['auth', 'verified'])->name('checkout');
 
 // frontend routes
 Route::get('/products', [UserController::class, 'products'])->name('products');
