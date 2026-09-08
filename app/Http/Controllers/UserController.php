@@ -32,7 +32,7 @@ class UserController extends Controller
         // return response()->json([
         //     'message' => 'Product details retrieved successfully',
         //     'product_details' => $product,
-        
+
         // ], 200);
     }
 
@@ -45,30 +45,64 @@ class UserController extends Controller
         }
         $cart = Cart::join('products', 'carts.product_id', '=', 'products.id')
             ->where('carts.user_id', Auth::id())
-            ->select('carts.*', 'products.name', 'products.price', 'products.image')
+            ->select('carts.*', 'products.name', 'products.price', 'products.image', 'products.quantity as product_quantity')
             ->get();
         return view('frontend.cart', ['cart' => $cart]);
     }
 
     public function addtocart(Request $request, string $id)
     {
-        // it will check if the user is logged in or not, if not it will redirect to login page
         if (!Auth::check()) {
             return redirect()->route('login');
         }
 
-        $cart = Cart::where('user_id', Auth::id())->where('product_id', $id)->first();
+        $request->validate([
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $product = Product::find($id);
+
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found!');
+        }
+
+        $cart = Cart::where('user_id', Auth::id())
+            ->where('product_id', $id)
+            ->first();
+
         if ($cart) {
-            $cart->quantity += $request->quantity;
+
+            $newQuantity = $cart->quantity + $request->quantity;
+
+            if ($newQuantity > $product->quantity) {
+                return redirect()->back()->with(
+                    'error',
+                    'You cannot add more than the available stock!'
+                );
+            }
+
+            $cart->quantity = $newQuantity;
             $cart->save();
+
         } else {
+
+            if ($request->quantity > $product->quantity) {
+                return redirect()->back()->with(
+                    'error',
+                    'Requested quantity is not available in stock!'
+                );
+            }
+
             $cart = new Cart();
             $cart->user_id = Auth::id();
             $cart->product_id = $id;
             $cart->quantity = $request->quantity;
             $cart->save();
         }
-        return redirect()->route('cartpage')->with('success', 'Product added to cart successfully!');
+
+        return redirect()
+            ->route('cartpage')
+            ->with('success', 'Product added to cart successfully!');
     }
 
     public function removecart(string $id)
@@ -92,6 +126,27 @@ class UserController extends Controller
         } else {
             return redirect()->route('cartpage')->with('error', 'Product not found in cart!');
         }
+    }
+
+    public function checkout()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $cart = Cart::join('products', 'carts.product_id', '=', 'products.id')
+            ->where('carts.user_id', Auth::id())
+            ->select(
+                'carts.id',
+                'carts.product_id',
+                'carts.quantity',
+                'products.price',
+                'products.name',
+                'products.image'
+            )
+            ->get();
+
+        return view('frontend.checkout', ['cart' => $cart]);
     }
 
     public function contact()
