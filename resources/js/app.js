@@ -1,4 +1,5 @@
 import './bootstrap';
+import './increment.js';
 
 import Alpine from 'alpinejs';
 
