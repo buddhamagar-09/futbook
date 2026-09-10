@@ -11,10 +11,7 @@
 
             <!-- Breadcrumb -->
             <div class="flex items-center gap-2 text-sm text-slate-500">
-                <a
-                    href="{{ route('cartpage') }}"
-                    class="transition hover:text-blue-600"
-                >
+                <a href="{{ route('cartpage') }}" class="transition hover:text-blue-600">
                     Cart
                 </a>
 
@@ -93,20 +90,13 @@
                                 <!-- Full Name -->
                                 <div>
 
-                                    <label
-                                        for="name"
-                                        class="mb-2 block text-sm font-semibold text-slate-700"
-                                    >
+                                    <label for="name" class="mb-2 block text-sm font-semibold text-slate-700">
                                         Full Name
                                     </label>
 
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        placeholder="Enter your full name"
+                                    <input type="text" id="name" placeholder="Enter your full name"
                                         value="{{ Auth::user()->name }}"
-                                        class="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                                    >
+                                        class="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
 
                                 </div>
 
@@ -114,20 +104,13 @@
                                 <!-- Email -->
                                 <div>
 
-                                    <label
-                                        for="email"
-                                        class="mb-2 block text-sm font-semibold text-slate-700"
-                                    >
+                                    <label for="email" class="mb-2 block text-sm font-semibold text-slate-700">
                                         Email Address
                                     </label>
 
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        placeholder="Enter your email address"
+                                    <input type="email" id="email" placeholder="Enter your email address"
                                         value="{{ Auth::user()->email}}"
-                                        class="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                                    >
+                                        class="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
 
                                 </div>
 
@@ -135,19 +118,12 @@
                                 <!-- Phone -->
                                 <div>
 
-                                    <label
-                                        for="phone"
-                                        class="mb-2 block text-sm font-semibold text-slate-700"
-                                    >
+                                    <label for="phone" class="mb-2 block text-sm font-semibold text-slate-700">
                                         Phone Number
                                     </label>
 
-                                    <input
-                                        type="text"
-                                        id="phone"
-                                        placeholder="Enter your phone number"
-                                        class="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                                    >
+                                    <input type="text" id="phone" placeholder="Enter your phone number"
+                                        class="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
 
                                 </div>
 
@@ -155,19 +131,12 @@
                                 <!-- City -->
                                 <div>
 
-                                    <label
-                                        for="city"
-                                        class="mb-2 block text-sm font-semibold text-slate-700"
-                                    >
+                                    <label for="city" class="mb-2 block text-sm font-semibold text-slate-700">
                                         City
                                     </label>
 
-                                    <input
-                                        type="text"
-                                        id="city"
-                                        placeholder="Enter your city"
-                                        class="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                                    >
+                                    <input type="text" id="city" placeholder="Enter your city"
+                                        class="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
 
                                 </div>
 
@@ -175,19 +144,12 @@
                                 <!-- Address -->
                                 <div class="sm:col-span-2">
 
-                                    <label
-                                        for="address"
-                                        class="mb-2 block text-sm font-semibold text-slate-700"
-                                    >
+                                    <label for="address" class="mb-2 block text-sm font-semibold text-slate-700">
                                         Delivery Address
                                     </label>
 
-                                    <textarea
-                                        id="address"
-                                        rows="3"
-                                        placeholder="Enter your complete delivery address"
-                                        class="w-full resize-none border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                                    ></textarea>
+                                    <textarea id="address" rows="3" placeholder="Enter your complete delivery address"
+                                        class="w-full resize-none border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"></textarea>
 
                                 </div>
 
@@ -195,22 +157,16 @@
                                 <!-- Order Note -->
                                 <div class="sm:col-span-2">
 
-                                    <label
-                                        for="order_note"
-                                        class="mb-2 block text-sm font-semibold text-slate-700"
-                                    >
+                                    <label for="order_note" class="mb-2 block text-sm font-semibold text-slate-700">
                                         Order Note
                                         <span class="font-normal text-slate-400">
                                             (Optional)
                                         </span>
                                     </label>
 
-                                    <textarea
-                                        id="order_note"
-                                        rows="3"
+                                    <textarea id="order_note" rows="3"
                                         placeholder="Any special instructions for your order?"
-                                        class="w-full resize-none border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
-                                    ></textarea>
+                                        class="w-full resize-none border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"></textarea>
 
                                 </div>
 
@@ -257,15 +213,11 @@
 
 
                                 <!-- Cash on Delivery -->
-                                <label class="flex cursor-pointer items-start gap-4 border border-blue-200 bg-blue-50 p-4">
+                                <label
+                                    class="flex cursor-pointer items-start gap-4 border border-blue-200 bg-blue-50 p-4">
 
-                                    <input
-                                        type="radio"
-                                        name="payment"
-                                        value="cod"
-                                        checked
-                                        class="mt-1 h-4 w-4 accent-blue-600"
-                                    >
+                                    <input type="radio" name="payment" value="cod" checked
+                                        class="mt-1 h-4 w-4 accent-blue-600">
 
                                     <div class="flex-1">
 
@@ -293,14 +245,11 @@
 
 
                                 <!-- eSewa -->
-                                <label class="flex cursor-pointer items-start gap-4 border border-slate-200 bg-white p-4 transition hover:border-blue-200 hover:bg-slate-50">
+                                <label
+                                    class="flex cursor-pointer items-start gap-4 border border-slate-200 bg-white p-4 transition hover:border-blue-200 hover:bg-slate-50">
 
-                                    <input
-                                        type="radio"
-                                        name="payment"
-                                        value="esewa"
-                                        class="mt-1 h-4 w-4 accent-blue-600"
-                                    >
+                                    <input type="radio" name="payment" value="esewa"
+                                        class="mt-1 h-4 w-4 accent-blue-600">
 
                                     <div class="flex-1">
 
@@ -370,46 +319,40 @@
 
                         @foreach ($cart as $item)
 
-                    
-                        
-                       
-                        <!-- Products -->
-                        <div class="divide-y divide-slate-100">
+                            <!-- Products -->
+                            <div class="divide-y divide-slate-100">
 
 
-                            <!-- Product 1 -->
-                            <div class="flex gap-4 p-5">
+                                <!-- Product 1 -->
+                                <div class="flex gap-4 p-5">
 
-                                <div class="h-16 w-16 shrink-0 overflow-hidden bg-slate-100">
+                                    <div class="h-16 w-16 shrink-0 overflow-hidden bg-slate-100">
 
-                                    <img
-                                        src="{{ asset('image/products/' . $item->image) }}"
-                                        alt="Football"
-                                        class="h-full w-full object-cover"
-                                    >
+                                        <img src="{{ asset('image/products/' . $item->image) }}" alt="Football"
+                                            class="h-full w-full object-cover">
 
-                                </div>
+                                    </div>
 
 
-                                <div class="min-w-0 flex-1">
+                                    <div class="min-w-0 flex-1">
 
-                                    <h3 class="truncate text-sm font-semibold text-slate-900">
-                                        {{ $item->name }}
-                                    </h3>
+                                        <h3 class="truncate text-sm font-semibold text-slate-900">
+                                            {{ $item->name }}
+                                        </h3>
 
-                                    <p class="mt-1 text-xs text-slate-500">
-                                        Qty: {{ $item->quantity }}
-                                    </p>
+                                        <p class="mt-1 text-xs text-slate-500">
+                                            Qty: {{ $item->quantity }}
+                                        </p>
 
-                                    <p class="mt-2 text-sm font-bold text-blue-600">
-                                        Rs. {{ number_format($item->price * $item->quantity, 2) }}
-                                    </p>
+                                        <p class="mt-2 text-sm font-bold text-blue-600">
+                                            Rs. {{ number_format($item->price * $item->quantity, 2) }}
+                                        </p>
+
+                                    </div>
 
                                 </div>
 
                             </div>
-
-                        </div>
 
                         @endforeach
 
@@ -417,12 +360,12 @@
 
 
                         @php
-                        
+
                             $totalprice = 0;
                             $deliveryCharge = 150; // Fixed delivery charge
                             foreach ($cart as $item) {
                                 $totalprice += $item->price * $item->quantity;
-                            }   
+                            }
 
                             $grandTotal = $totalprice + $deliveryCharge;
                         @endphp
@@ -440,7 +383,7 @@
                                     </span>
 
                                     <span class="font-medium text-slate-900">
-                                     {{ number_format($totalprice, 2) }}
+                                        {{ number_format($totalprice, 2) }}
                                     </span>
 
                                 </div>
@@ -497,20 +440,16 @@
 
 
                             <!-- Place Order -->
-                            <button
-                                type="button"
-                                class="mt-6 flex w-full items-center justify-center gap-2 bg-blue-600 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-blue-700"
-                            >
+                            <button type="button" id="placeorderbtn"
+                                class="mt-6 flex w-full items-center justify-center gap-2 bg-blue-600 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-blue-700">
                                 <i class="bi bi-check2-circle"></i>
                                 Place Order
                             </button>
 
 
                             <!-- Back to Cart -->
-                            <a
-                                href="{{ route('cartpage') }}"
-                                class="mt-3 flex w-full items-center justify-center gap-2 border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
-                            >
+                            <a href="{{ route('cartpage') }}"
+                                class="mt-3 flex w-full items-center justify-center gap-2 border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
                                 <i class="bi bi-arrow-left"></i>
                                 Back to Cart
                             </a>
@@ -543,6 +482,34 @@
     </section>
 
 </div>
+
+<script>
+
+    document.getElementById('placeorderbtn').addEventListener('click', () => {
+
+        const selectedpayment = document.querySelector('input[name="payment"]:checked').value;
+
+
+        if (selectedpayment === 'esewa') {
+            // console.log('eSewa payment selected');
+            window.location.href = "{{ route('esewa.initiatepayment') }}";
+
+
+        } else if (selectedpayment === 'cod') {
+            // console.log('Cash on Delivery selected');
+            if (confirm('Are you sure you want to place the order with Cash on Delivery?')) {
+                window.location.href = "{{ route('cod.placeorder') }}";
+            }
+            else {
+                // User canceled the confirmation dialog
+                window.localStorage.removeItem('codConfailure');
+            }
+
+
+        }
+    });
+
+</script>
 
 
 @include('frontend.footer')
