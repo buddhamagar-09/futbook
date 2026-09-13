@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CodController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EsewaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,6 +14,16 @@ Route::get('/', function () {
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/cart', [UserController::class, 'cartpage'])->middleware(['auth', 'verified'])->name('cartpage');
 Route::get('/checkout', [UserController::class, 'checkout'])->middleware(['auth', 'verified'])->name('checkout');
+
+Route::post('esewa/initiatepayment', [EsewaController::class, 'initiatepayment'])
+    ->middleware(['auth', 'verified'])
+    ->name('esewa.initiatepayment');
+Route::get('esewa/success', [EsewaController::class, 'success'])->middleware(['auth', 'verified'])->name('esewa.success');
+Route::get('esewa/failure', [EsewaController::class, 'failure'])->middleware(['auth', 'verified'])->name('esewa.failure');
+
+// COD payment route
+Route::post('/cod/placeorder', [CodController::class, 'placeOrder'])->middleware(['auth', 'verified'])->name('cod.placeorder');
+
 
 // frontend routes
 Route::get('/products', [UserController::class, 'products'])->name('products');
@@ -30,11 +42,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['admin'])->group(function () {
     Route::get('/addproductForm', [AdminController::class, 'product_add_form'])->name('add.products');
     Route::post('/addproduct', [AdminController::class, 'product_add'])->name('admin.product.add');
-    Route::get('/viewProducts',[AdminController::class, 'view_products'])->name('admin.view.products');
-    Route::get('/deleteProducts/{id}',[AdminController::class, 'delete_products'])->name('admin.delete.product');
-    Route::get('/editProducts/{id}',[AdminController::class, 'edit_products'])->name('admin.edit.product');
-    Route::post('/updateProducts/{id}',[AdminController::class, 'update_products'])->name('admin.update.product');
-    Route::get('/users',[AdminController::class, 'view_users'])->name('admin.view.users');
-    Route::get('/deleteusers/{id}',[AdminController::class, 'delete_users'])->name('admin.delete.user');
+    Route::get('/viewProducts', [AdminController::class, 'view_products'])->name('admin.view.products');
+    Route::get('/deleteProducts/{id}', [AdminController::class, 'delete_products'])->name('admin.delete.product');
+    Route::get('/editProducts/{id}', [AdminController::class, 'edit_products'])->name('admin.edit.product');
+    Route::post('/updateProducts/{id}', [AdminController::class, 'update_products'])->name('admin.update.product');
+    Route::get('/users', [AdminController::class, 'view_users'])->name('admin.view.users');
+    Route::get('/deleteusers/{id}', [AdminController::class, 'delete_users'])->name('admin.delete.user');
 });
 require __DIR__ . '/auth.php';
