@@ -7,52 +7,152 @@
     <div class="card mt-4">
 
         <div class="card-header">
-            <h4>Edit Product</h4>
+            <h4 class="mb-0">Edit Product</h4>
         </div>
 
         <div class="card-body">
-       
-            <!-- Your product form goes here -->
-              <div class="max-w-3xl rounded-[1.75rem] border border-white/10 bg-white/5 p-6">
-        <form action="{{ route('admin.update.product', $eproduct->id) }}" method="POST" enctype="multipart/form-data" class="space-y-5">
-            @csrf
-            <div>
-                <label class="mb-2 block text-sm text-slate-300">Product Name</label>
-                <input type="text" name="product_name" value="{{ $eproduct->name }}" class="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-pink-400/40">
-            </div>
 
-            <div>
-                <label class="mb-2 block text-sm text-slate-300">Description</label>
-                <textarea name="product_description" rows="4" class="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-pink-400/40">{{ $eproduct->description }}</textarea>
-            </div>
-             <div>
-                <label class="mb-2 block text-sm text-slate-300">Price</label>
-                <input type="number" name="product_price" step="0.01" value="{{ $eproduct->price }}" class="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-pink-400/40">
-            </div>
-            <!-- quantity -->
-            <div>
-                <label class="mb-2 block text-sm text-slate-300">Quantity</label>
-                <input type="number" name="product_quantity" value="{{ $eproduct->quantity }}" class="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-pink-400/40">
-            </div>
+            <form action="{{ route('admin.update.product', $eproduct->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <div class="row">
+
+                    <!-- Product Name -->
+                    <div class="col-md-6 mb-4">
+                        <label for="product_name" class="form-label">
+                            Product Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="product_name"
+                            name="product_name"
+                            value="{{ $eproduct->name }}"
+                            class="form-control"
+                            placeholder="Enter product name"
+                            required
+                        >
+                    </div>
 
 
-            <!-- current Image -->
-             <div>
-                <label class="mb-2 block text-sm text-slate-300">Current Product Image</label>
-                <img src="{{ asset('image/products/' . $eproduct->image) }}" alt="{{ $eproduct->name }}" class="w-32 h-32 object-cover rounded">
-             </div>
+                    <!-- Price -->
+                    <div class="col-md-6 mb-4">
+                        <label for="product_price" class="form-label">
+                            Price
+                        </label>
 
-            <div>
-                <label class="mb-2 block text-sm text-slate-300">Product Image</label>
-                <input type="file" name="product_image" class="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-slate-300">
-            </div>
+                        <div class="input-group">
+                            <span class="input-group-text">Rs.</span>
 
-            <button type="submit" class="mt-3 rounded-full bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-pink-400">
-                Save Product
-            </button>
-        </form>
-       
-    </div>
+                            <input
+                                type="number"
+                                id="product_price"
+                                name="product_price"
+                                step="0.01"
+                                min="0"
+                                value="{{ $eproduct->price }}"
+                                class="form-control"
+                                placeholder="Enter price"
+                                required
+                            >
+                        </div>
+                    </div>
+
+
+                    <!-- Quantity -->
+                    <div class="col-md-6 mb-4">
+                        <label for="product_quantity" class="form-label">
+                            Quantity
+                        </label>
+
+                        <input
+                            type="number"
+                            id="product_quantity"
+                            name="product_quantity"
+                            min="0"
+                            value="{{ $eproduct->quantity }}"
+                            class="form-control"
+                            placeholder="Enter quantity"
+                            required
+                        >
+                    </div>
+
+
+                    <!-- Current Image -->
+                    <div class="col-md-6 mb-4">
+
+                        <label class="form-label">
+                            Current Product Image
+                        </label>
+
+                        <div>
+                            <img
+                                src="{{ asset('image/products/' . $eproduct->image) }}"
+                                alt="{{ $eproduct->name }}"
+                                style="width: 100px; height: 100px; object-fit: cover;"
+                                class="rounded"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="col-12 mb-4">
+                        <label for="product_description" class="form-label">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="product_description"
+                            name="product_description"
+                            rows="5"
+                            class="form-control"
+                            placeholder="Enter product description"
+                            required
+                        >{{ $eproduct->description }}</textarea>
+                    </div>
+
+
+                    <!-- New Image -->
+                    <div class="col-12 mb-4">
+
+                        <label for="product_image" class="form-label">
+                            Change Product Image
+                        </label>
+
+                        <input
+                            type="file"
+                            id="product_image"
+                            name="product_image"
+                            class="form-control"
+                            accept="image/*"
+                        >
+
+                        <div class="form-text">
+                            Leave this empty if you want to keep the current image.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Buttons -->
+                <div class="d-flex gap-2">
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-pencil-square me-1"></i>
+                        Update Product
+                    </button>
+
+                    <a href="{{ route('admin.view.products') }}" class="btn btn-secondary">
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
 
         </div>
 
