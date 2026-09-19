@@ -25,9 +25,8 @@
                 <div class="table-responsive">
 
                     <table class="table mb-0">
-                       
-                      
-                      
+
+                        <table class="table mb-0">
 
                             <tbody>
 
@@ -71,8 +70,8 @@
                                     <td class="text-body-secondary">
                                         Total Amount
                                     </td>
-                                    <td>
-                                        Rs.{{ $order->total_amount }}
+                                    <td class="fw-semibold">
+                                        Rs. {{ number_format($order->total_amount, 2) }}
                                     </td>
                                 </tr>
 
@@ -81,9 +80,7 @@
                                         Payment Method
                                     </td>
                                     <td>
-                                        <span class="badge text-bg-primary">
-                                         {{ strtoupper($order->payment_method) }}
-                                        </span>
+                                        {{ strtoupper($order->payment_method) }}
                                     </td>
                                 </tr>
 
@@ -92,9 +89,13 @@
                                         Payment Status
                                     </td>
                                     <td>
-                                        <span class="badge text-bg-warning">
-                                           {{ strtoupper($order->payment_status) }}
-                                        </span>
+                                        @if ($order->payment_status === 'paid')
+                                            <span class="text-success">Paid</span>
+                                        @elseif ($order->payment_status === 'failed')
+                                            <span class="text-danger">Failed</span>
+                                        @else
+                                            <span class="text-warning">Pending</span>
+                                        @endif
                                     </td>
                                 </tr>
 
@@ -103,16 +104,24 @@
                                         Order Status
                                     </td>
                                     <td>
-                                        <span class="badge text-bg-info">
-                                          {{ strtoupper($order->status) }}
-                                        </span>
+                                        @if ($order->status === 'delivered')
+                                            <span class="text-primary">Delivered</span>
+                                        @elseif ($order->status === 'cancelled')
+                                            <span class="text-danger">Cancelled</span>
+                                        @elseif ($order->status === 'processing')
+                                            <span class="text-info">Processing</span>
+                                        @endif
                                     </td>
                                 </tr>
 
                             </tbody>
-                     
+
+
+                        </table>
+
 
                     </table>
+
 
                 </div>
 
@@ -149,37 +158,37 @@
 
                         <tbody>
                             @foreach ($order->Order_items as $item)
-                            
-                            <!-- Product 1 -->
-                            <tr>
 
-                                <td>
-                                    {{ $item->product->id }}
-                                </td>
+                                <!-- Product 1 -->
+                                <tr>
 
-                                <td>
-                                    <img src="{{ asset('image/products/' . $item->product->image) }}" alt="Classic T-Shirt"
-                                        style="width: 50px; height: 50px; object-fit: cover;">
-                                </td>
+                                    <td>
+                                        {{ $item->product->id }}
+                                    </td>
 
-                                <td>
-                                    {{ $item->product->name }}
-                                </td>
+                                    <td>
+                                        <img src="{{ asset('image/products/' . $item->product->image) }}" alt="Classic T-Shirt"
+                                            style="width: 50px; height: 50px; object-fit: cover;">
+                                    </td>
 
-                                <td>
-                                    Rs.{{ $item->product->price }}
-                                </td>
+                                    <td>
+                                        {{ $item->product->name }}
+                                    </td>
 
-                                <td>
-                                    {{ $item->quantity }}
-                                </td>
+                                    <td>
+                                        Rs.{{ $item->product->price }}
+                                    </td>
 
-                                <td>
-                                    Rs.{{ $item->product->price * $item->quantity }}
-                                </td>
+                                    <td>
+                                        {{ $item->quantity }}
+                                    </td>
 
-                            </tr>
-                             @endforeach
+                                    <td>
+                                        Rs.{{ $item->product->price * $item->quantity }}
+                                    </td>
+
+                                </tr>
+                            @endforeach
 
                         </tbody>
 
