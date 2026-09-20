@@ -1,4 +1,3 @@
-
 <header class="sticky top-0 z-50 border-b border-slate-200 bg-white shadow-sm">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
 
@@ -28,24 +27,24 @@
             <!-- Desktop Navigation -->
             <nav class="hidden items-center gap-7 text-sm font-medium text-slate-600 lg:flex">
 
-                <a href="{{ url('/') }}"
-                    class="transition duration-200 hover:text-blue-600">
+                <a href="{{ url('/') }}" class="transition duration-200 hover:text-blue-600">
                     Home
                 </a>
 
-                <a href="{{ route('products') }}"
-                    class="transition duration-200 hover:text-blue-600">
+                <a href="{{ route('products') }}" class="transition duration-200 hover:text-blue-600">
                     Products
                 </a>
 
-                <a href="{{ url('/') }}#products"
-                    class="transition duration-200 hover:text-blue-600">
+                <a href="{{ url('/') }}#products" class="transition duration-200 hover:text-blue-600">
                     New Arrivals
                 </a>
 
-                <a href="{{ route('contact') }}"
-                    class="transition duration-200 hover:text-blue-600">
+                <a href="{{ route('contact') }}" class="transition duration-200 hover:text-blue-600">
                     Contact
+                </a>
+
+                <a href="{{ route('myorders') }}" class="transition duration-200 hover:text-blue-600">
+                    My Orders
                 </a>
 
             </nav>
@@ -57,17 +56,12 @@
 
                     <div class="relative">
 
-                        <i
-                            class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                        <i class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
                         </i>
 
-                        <input
-                            type="search"
-                            name="search"
-                            value="{{ request('search') }}"
+                        <input type="search" name="search" value="{{ request('search') }}"
                             placeholder="Search products..."
-                            class="w-full border border-slate-300 bg-slate-50 py-2.5 pl-11 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:bg-white focus:ring-1 focus:ring-blue-600"
-                        />
+                            class="w-full border border-slate-300 bg-slate-50 py-2.5 pl-11 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:bg-white focus:ring-1 focus:ring-blue-600" />
 
                     </div>
 
@@ -127,8 +121,7 @@
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
-                        <button
-                            type="submit"
+                        <button type="submit"
                             class="hidden border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-red-500 hover:bg-red-50 hover:text-red-600 sm:block">
 
                             <i class="bi bi-box-arrow-right mr-1"></i>
@@ -164,8 +157,7 @@
 
 
                 <!-- Mobile Menu Button -->
-                <button
-                    type="button"
+                <button type="button"
                     class="flex h-10 w-10 items-center justify-center border border-slate-200 text-slate-700 transition hover:border-blue-500 hover:text-blue-600 lg:hidden"
                     aria-label="Open menu">
 
@@ -185,17 +177,11 @@
 
                 <div class="relative">
 
-                    <i
-                        class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                    <i class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
                     </i>
 
-                    <input
-                        type="search"
-                        name="search"
-                        value="{{ request('search') }}"
-                        placeholder="Search products..."
-                        class="w-full border border-slate-300 bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:bg-white focus:ring-1 focus:ring-blue-600"
-                    />
+                    <input type="search" name="search" value="{{ request('search') }}" placeholder="Search products..."
+                        class="w-full border border-slate-300 bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:bg-white focus:ring-1 focus:ring-blue-600" />
 
                 </div>
 
@@ -205,4 +191,3 @@
 
     </div>
 </header>
-
