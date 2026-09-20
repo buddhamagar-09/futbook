@@ -14,6 +14,7 @@ Route::get('/', function () {
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/cart', [UserController::class, 'cartpage'])->middleware(['auth', 'verified'])->name('cartpage');
 Route::get('/checkout', [UserController::class, 'checkout'])->middleware(['auth', 'verified'])->name('checkout');
+Route::get('/myorders', [UserController::class, 'myorders'])->middleware(['auth', 'verified'])->name('myorders');
 
 Route::post('esewa/initiatepayment', [EsewaController::class, 'initiatepayment'])
     ->middleware(['auth', 'verified'])
