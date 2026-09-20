@@ -63,7 +63,7 @@ public function placeOrder(Request $request)
     $transactionId = (string) Str::uuid();
 
     // COD payment information
-    $status = 'pending';
+    $status = 'processing';
     $payment_method = 'cod';
     $payment_status = 'pending';
 

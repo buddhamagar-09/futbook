@@ -156,7 +156,7 @@ class EsewaController extends Controller
         $order->transaction_uuid = $transaction_uuid;
         $order->payment_method = 'esewa';
         $order->payment_status = $payment_status;
-        $order->status = 'pending';
+        $order->status = 'processing';
 
         $order->save();
 
