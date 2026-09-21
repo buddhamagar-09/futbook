@@ -124,14 +124,14 @@
                         </div>
 
 
-                        <!-- View Details -->
-                        <a href="#" class="px-4 py-2 text-sm
+                        <!-- View Details
+                        <a href="{{ route('product_details', $order->id) }}" class="px-4 py-2 text-sm
                                                border border-slate-300
                                                text-slate-700
                                                hover:bg-slate-100
                                                text-center">
                             View Details
-                        </a>
+                        </a> -->
 
                     </div>
 
