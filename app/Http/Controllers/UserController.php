@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Orders;
 
 class UserController extends Controller
 {
@@ -152,5 +153,17 @@ class UserController extends Controller
     public function contact()
     {
         return view('frontend.contactus');
+    }
+
+
+    public function myorders(Request $request)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $userId = Auth::id();
+        $orders = Orders::with(['Order_items', 'Order_items.product'])->where('user_id', $userId)->get();
+        return view('frontend.myorders', ['orders' => $orders]);
     }
 }
