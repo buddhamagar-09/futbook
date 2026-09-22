@@ -44,8 +44,8 @@
 
                     <table class="table table-hover align-middle mb-0" id="ordersTable">
 
-                        <thead>
-                            <tr>
+                        <thead class="">
+                            <tr class="align-middle text-nowrap">
                                 <th class="ps-3">#</th>
                                 <th>Customer</th>
                                 <th>Phone</th>
@@ -177,7 +177,7 @@
                                                     @method('PATCH')
 
                                                     <button type="submit" class="btn btn-outline-primary btn-sm">
-                                                        <i class="bi bi-check-lg me-1"></i>
+                                                        <!-- <i class="bi bi-check-lg me-1"></i> -->
                                                         Complete
                                                     </button>
                                                 </form>
@@ -189,7 +189,7 @@
                                                     @method('PATCH')
 
                                                     <button type="submit" class="btn btn-outline-secondary btn-sm">
-                                                        <i class="bi bi-x-lg me-1"></i>
+                                                        <!-- <i class="bi bi-x-lg me-1"></i> -->
                                                         Cancel
                                                     </button>
                                                 </form>
