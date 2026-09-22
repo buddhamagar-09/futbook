@@ -4,7 +4,7 @@
 
     <div class="mb-4 d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3">
 
-     
+
         <div>
             <h1 class="h3 mb-1">View Products</h1>
             <p class="text-body-secondary mb-0">
@@ -12,20 +12,29 @@
             </p>
         </div>
 
-        <!-- Search -->
-        <div class="input-group" style="max-width: 300px;">
-            <span class="input-group-text">
-                <i class="bi bi-search"></i>
-            </span>
 
-            <input type="text" id="productSearch" class="form-control" placeholder="Search products...">
-        </div>
-     
+        <form action="{{ route('products.search') }}" class="input-group" style="max-width: 350px;">
+
+            <input type="text" id="productSearch" name="product_search" class="form-control"
+                placeholder="Search products..." value="{{ request('product_search') }}">
+
+            @if(request('product_search') != '')
+                <a href="{{ route('admin.view.products') }}" class="btn btn-outline-secondary" title="Show all products">
+                    <i class="bi bi-x-lg"></i>
+                </a>
+            @else
+                <button type="submit" class="btn btn-outline-secondary">
+                    <i class="bi bi-search"></i>
+                </button>
+            @endif
+        </form>
+
+
     </div>
 
     <div class="card">
 
-     
+
         <div class="card-header">
             <strong>Products</strong>
         </div>
@@ -112,34 +121,35 @@
             </div>
 
         </div>
-  
+
 
     </div>
 
     <!-- Search -->
 
-    <script>
+    <!-- <script>
 
-        document.getElementById('productSearch').addEventListener('keyup', function () {
+                                document.getElementById('productSearch').addEventListener('keyup', function () {
 
-            let search = this.value.toLowerCase();
+                                    let search = this.value.toLowerCase();
 
-            let rows = document.querySelectorAll('#productsTable tbody tr');
+                                    let rows = document.querySelectorAll('#productsTable tbody tr');
 
-            rows.forEach(function (row) {
+                                    rows.forEach(function (row) {
 
-                let name = row.cells[2].textContent.toLowerCase();
+                                        let name = row.cells[2].textContent.toLowerCase();
 
-                if (name.includes(search)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
+                                        if (name.includes(search)) {
+                                            row.style.display = '';
+                                        } else {
+                                            row.style.display = 'none';
+                                        }
 
-            });
+                                    });
 
-        });
+                                });
 
-    </script>
+                            </script> -->
+
 
 @endsection
