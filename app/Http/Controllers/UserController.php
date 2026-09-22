@@ -166,4 +166,37 @@ class UserController extends Controller
         $orders = Orders::with(['Order_items', 'Order_items.product'])->where('user_id', $userId)->get();
         return view('frontend.myorders', ['orders' => $orders]);
     }
+
+
+    public function searchProducts(Request $request)
+    {
+        $searchTerm = trim($request->product_search);
+
+        if ($searchTerm) {
+            $productlist = Product::where('name', 'like', '%' . $searchTerm . '%')
+                ->orWhere('description', 'like', '%' . $searchTerm . '%')
+                ->get();
+        } else {
+            return redirect()->route('admin.view.products');
+        }
+
+        return view('admin.products.viewproduct', compact('productlist'));
+    }
+
+
+// Frontend search
+public function search(Request $request)
+{
+    $searchTerm = trim($request->input('search'));
+
+    if (!$searchTerm) {
+        return redirect()->route('products');
+    }
+
+    $productlist = Product::where('name', 'like', '%' . $searchTerm . '%')
+        ->orWhere('description', 'like', '%' . $searchTerm . '%')
+        ->get();
+
+    return view('frontend.products', compact('productlist'));
+}
 }
