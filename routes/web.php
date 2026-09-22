@@ -34,6 +34,11 @@ Route::post('/addtocart/{id}', [UserController::class, 'addtocart'])->name('addt
 Route::get('/removecart/{id}', [UserController::class, 'removecart'])->name('removecart');
 Route::post('/updatecart/{id}', [UserController::class, 'updatecart'])->name('updatecart');
 
+Route::get('/search-products', [UserController::class, 'searchProducts'])
+    ->name('products.search');
+Route::get('/search-prouducts', [UserController::class, 'search'])
+    ->name('frontend.products.search');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
