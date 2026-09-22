@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Orders;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -110,5 +111,45 @@ class AdminController extends Controller
     {
         $users = User::where('usertype', 'user')->get();
         return view('admin.products.view_users', ['users' => $users]);
+    }
+
+    public function delete_users(string $id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->back();
+    }
+
+    public function view_orders(Request $request)
+    {
+        $orders = Orders::with(['Order_items', 'Order_items.product'])->get();
+        return view('admin.products.view_orders', ['orderlist' => $orders]);
+    }
+
+    public function view_orderdetails (string $id)
+    {
+        $order = Orders::with(['Order_items', 'Order_items.product'])->findOrFail($id);
+        return view('admin.products.view_order_details', ['order' => $order]);
+    }
+
+
+    public function update_orderstatus(Request $request, string $id)
+    {
+        $order = Orders::findOrFail($id);
+        $order->status = 'delivered';
+        if( $order->payment_status === 'pending') {
+            $order->payment_status = 'paid';
+        }
+        $order->save();
+        return redirect()->back()->with('success', 'Order status updated to delivered.');
+    }
+
+    public function cancel_order(Request $request, string $id)
+    {
+        $order = Orders::findOrFail($id);
+        $order->status = 'cancelled';
+        $order->save();
+
+        return redirect()->back()->with('success', 'Order has been cancelled.');
     }
 }
