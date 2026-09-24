@@ -52,16 +52,32 @@
 
             <!-- Search -->
             <div class="hidden flex-1 justify-center lg:flex">
-                <form action="{{ route('products') }}" method="GET" class="w-full max-w-md">
+                <form action="{{ route('frontend.products.search') }}" method="GET" class="w-full max-w-md">
 
                     <div class="relative">
 
-                        <i class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-                        </i>
-
                         <input type="search" name="search" value="{{ request('search') }}"
-                            placeholder="Search products..."
-                            class="w-full border border-slate-300 bg-slate-50 py-2.5 pl-11 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:bg-white focus:ring-1 focus:ring-blue-600" />
+                            placeholder="Search products..." class="w-full border border-slate-300 bg-slate-50 py-2.5 pl-11 pr-11 text-sm text-slate-900 outline-none transition focus:border-blue-600 focus:bg-white focus:ring-1 focus:ring-blue-600 placeholder:text-slate-400
+           [&::-webkit-search-cancel-button]:appearance-none
+           [&::-webkit-search-decoration]:appearance-none">
+
+                        @if(request('search') != '')
+
+                            <a href="{{ route('products') }}"
+                                class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-red-500"
+                                title="Clear search">
+                                <i class="bi bi-x-lg"></i>
+                            </a>
+
+                        @else
+
+                            <button type="submit"
+                                class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-600"
+                                title="Search">
+                                <i class="bi bi-search text-lg"></i>
+                            </button>
+
+                        @endif
 
                     </div>
 
