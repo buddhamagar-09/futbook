@@ -41,9 +41,6 @@ class UserController extends Controller
 
     public function cartpage(Request $request)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
         $cart = Cart::join('products', 'carts.product_id', '=', 'products.id')
             ->where('carts.user_id', Auth::id())
             ->select('carts.*', 'products.name', 'products.price', 'products.image', 'products.quantity as product_quantity')
@@ -53,9 +50,6 @@ class UserController extends Controller
 
     public function addtocart(Request $request, string $id)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
 
         $request->validate([
             'quantity' => 'required|integer|min:1',
@@ -108,7 +102,9 @@ class UserController extends Controller
 
     public function removecart(string $id)
     {
-        $cart = Cart::find($id);
+        $cart = Cart::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->first();
         if ($cart) {
             $cart->delete();
             return redirect()->route('cartpage')->with('success', 'Product removed from cart successfully!');
@@ -131,9 +127,6 @@ class UserController extends Controller
 
     public function checkout()
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
 
         $cart = Cart::join('products', 'carts.product_id', '=', 'products.id')
             ->where('carts.user_id', Auth::id())
@@ -158,9 +151,6 @@ class UserController extends Controller
 
     public function myorders(Request $request)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
 
         $userId = Auth::id();
         $orders = Orders::with(['Order_items', 'Order_items.product'])->where('user_id', $userId)->get();
