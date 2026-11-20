@@ -12,9 +12,15 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/cart', [UserController::class, 'cartpage'])->middleware(['auth', 'verified'])->name('cartpage');
-Route::get('/checkout', [UserController::class, 'checkout'])->middleware(['auth', 'verified'])->name('checkout');
-Route::get('/myorders', [UserController::class, 'myorders'])->middleware(['auth', 'verified'])->name('myorders');
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [UserController::class, 'cartpage'])->middleware(['auth', 'verified'])->name('cartpage');
+    Route::get('/checkout', [UserController::class, 'checkout'])->middleware(['auth', 'verified'])->name('checkout');
+    Route::get('/myorders', [UserController::class, 'myorders'])->middleware(['auth', 'verified'])->name('myorders');
+    Route::post('/addtocart/{id}', [UserController::class, 'addtocart'])->name('addtocart');
+    Route::get('/removecart/{id}', [UserController::class, 'removecart'])->name('removecart');
+    Route::post('/updatecart/{id}', [UserController::class, 'updatecart'])->name('updatecart');
+
+});
 
 Route::post('esewa/initiatepayment', [EsewaController::class, 'initiatepayment'])
     ->middleware(['auth', 'verified'])
@@ -30,13 +36,11 @@ Route::post('/cod/placeorder', [CodController::class, 'placeOrder'])->middleware
 Route::get('/products', [UserController::class, 'products'])->name('products');
 Route::get('/product_details/{id}', [UserController::class, 'product_details'])->name('product_details');
 Route::get('/contact', [UserController::class, 'contact'])->name('contact');
-Route::post('/addtocart/{id}', [UserController::class, 'addtocart'])->name('addtocart');
-Route::get('/removecart/{id}', [UserController::class, 'removecart'])->name('removecart');
-Route::post('/updatecart/{id}', [UserController::class, 'updatecart'])->name('updatecart');
+
 
 Route::get('/search-products', [UserController::class, 'searchProducts'])
     ->name('products.search');
-Route::get('/search-prouducts', [UserController::class, 'search'])
+Route::get('/frontend/search-products', [UserController::class, 'search'])
     ->name('frontend.products.search');
 
 Route::middleware('auth')->group(function () {
@@ -45,7 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 //Admin Middleware
-Route::middleware(['admin'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/addproductForm', [AdminController::class, 'product_add_form'])->name('add.products');
     Route::post('/addproduct', [AdminController::class, 'product_add'])->name('admin.product.add');
     Route::get('/viewProducts', [AdminController::class, 'view_products'])->name('admin.view.products');
