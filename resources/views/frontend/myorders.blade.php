@@ -20,6 +20,36 @@
         </div>
 
 
+        @if($orders->isEmpty())
+
+            <!-- EMPTY ORDERS -->
+            <div class="border border-slate-200 bg-white px-6 py-16 text-center shadow-sm">
+
+                <!-- Icon -->
+                <div class="mx-auto flex h-20 w-20 items-center justify-center bg-blue-50 text-blue-600">
+                    <i class="bi bi-box-seam text-4xl"></i>
+                </div>
+
+                <!-- Message -->
+                <h2 class="mt-6 text-2xl font-bold text-slate-900">
+                    No orders yet
+                </h2>
+
+                <p class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500">
+                    You haven't placed any orders yet. Browse our products and find something you love.
+                </p>
+
+                <!-- Button -->
+                <a href="{{ route('products') }}"
+                    class="mt-7 inline-flex items-center gap-2 bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white transition duration-200 hover:bg-blue-700">
+                    <i class="bi bi-bag"></i>
+                    Browse Products
+                </a>
+
+            </div>
+
+        @else
+
         @foreach ($orders as $order)
 
             <!-- Order -->
@@ -140,6 +170,8 @@
             </div>
 
         @endforeach
+
+        @endif
 
     </div>
 
