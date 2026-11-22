@@ -103,15 +103,17 @@
                     class="relative flex h-10 w-10 items-center justify-center border border-slate-200 text-slate-700 transition hover:border-blue-500 hover:text-blue-600"
                     aria-label="Shopping cart">
 
-                    <i class="bi bi-cart3 text-lg"></i>
+                    <i class="bi bi-cart3 text-lg" aria-hidden="true"></i>
 
                     <!-- Cart Count -->
-                    {{--
-                    <span
-                        class="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-blue-600 px-1 text-xs font-semibold text-white">
-                        2
-                    </span>
-                    --}}
+                    @if ($cartCount > 0)
+
+                        <span
+                            class="absolute -right-2 -top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-blue-600 px-1 text-xs font-semibold text-white">
+                            {{ $cartCount }}
+                        </span>
+
+                    @endif
 
                 </a>
 
