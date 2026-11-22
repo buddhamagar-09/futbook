@@ -8,20 +8,20 @@
 
         <div class="w-full border border-slate-200 bg-white p-8 text-center shadow-sm sm:p-12">
 
-            <!-- Failure Icon -->
-            <div class="mx-auto flex h-20 w-20 items-center justify-center bg-red-50 text-red-600">
-                <i class="bi bi-x-circle-fill text-5xl"></i>
+            <!-- Success Icon -->
+            <div class="mx-auto flex h-20 w-20 items-center justify-center bg-emerald-50 text-emerald-600">
+                <i class="bi bi-check-circle-fill text-5xl"></i>
             </div>
 
 
             <!-- Heading -->
             <h1 class="mt-6 text-3xl font-bold tracking-tight text-slate-900">
-                Payment Failed
+                Payment Successful
             </h1>
 
             <p class="mx-auto mt-3 max-w-md text-sm leading-6 text-slate-500">
-                Unfortunately, your payment could not be completed.
-                Please try again or choose another payment method.
+                Your payment has been completed and your order has been placed.
+                Thank you for shopping with Futbook.
             </p>
 
 
@@ -33,6 +33,20 @@
                 </h2>
 
                 <div class="space-y-3 text-sm">
+
+                    <!-- Order ID -->
+                    <div class="flex items-center justify-between gap-4">
+
+                        <span class="text-slate-500">
+                            Order ID
+                        </span>
+
+                        <span class="font-semibold text-slate-900">
+                            #{{ $order_id }}
+                        </span>
+
+                    </div>
+
 
                     <!-- Transaction Code -->
                     <div class="flex items-center justify-between gap-4">
@@ -66,11 +80,11 @@
                     <div class="flex items-center justify-between gap-4">
 
                         <span class="text-slate-500">
-                            Payment Status
+                            Transaction Status
                         </span>
 
-                        <span class="font-semibold text-red-600">
-                            <i class="bi bi-x-circle mr-1"></i>
+                        <span class="font-semibold text-emerald-600">
+                            <i class="bi bi-check-circle mr-1"></i>
                             {{ $status }}
                         </span>
 
@@ -95,15 +109,14 @@
             </div>
 
 
-            <!-- Warning -->
-            <div class="mt-6 flex items-start gap-3 border border-red-100 bg-red-50 p-4 text-left">
+            <!-- Confirmation -->
+            <div class="mt-6 flex items-start gap-3 border border-emerald-100 bg-emerald-50 p-4 text-left">
 
-                <i class="bi bi-exclamation-triangle mt-0.5 text-red-600"></i>
+                <i class="bi bi-info-circle mt-0.5 text-emerald-600"></i>
 
-                <p class="text-xs leading-5 text-red-700">
-                    Your payment was not completed. If money was deducted
-                    from your account, please wait for the payment status
-                    to be updated before trying again.
+                <p class="text-xs leading-5 text-emerald-700">
+                    Your order is now being processed. You can check its status
+                    any time from the "My Orders" page.
                 </p>
 
             </div>
@@ -112,12 +125,12 @@
             <!-- Buttons -->
             <div class="mt-8 grid gap-3 sm:grid-cols-2">
 
-                <a href="{{ route('cart') }}"
+                <a href="{{ route('myorders') }}"
                     class="inline-flex items-center justify-center gap-2 bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
 
-                    <i class="bi bi-arrow-repeat"></i>
+                    <i class="bi bi-box-seam"></i>
 
-                    Try Again
+                    View My Orders
 
                 </a>
 
@@ -140,8 +153,8 @@
                 <i class="bi bi-info-circle mt-0.5 text-blue-600"></i>
 
                 <p class="text-xs leading-5 text-slate-500">
-                    If you believe this payment failed incorrectly, please
-                    keep your transaction details and contact our support team.
+                    If you have any questions about your order, please keep
+                    your transaction details and contact our support team.
                 </p>
 
             </div>

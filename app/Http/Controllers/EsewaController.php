@@ -201,6 +201,7 @@ class EsewaController extends Controller
             'order_id' => $order_id,
             'transaction_code' => $ref_id,
             'total_amount' => $total_price,
+            'status' => $status,
         ]);
 
     }
