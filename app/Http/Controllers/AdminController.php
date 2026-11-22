@@ -27,7 +27,7 @@ class AdminController extends Controller
     {
 
 
-        $request->validate([
+       $validated =  $request->validate([
             'product_name' => 'required|string|max:255',
             'product_description' => 'required|string',
             'product_price' => 'required|numeric',
@@ -35,12 +35,11 @@ class AdminController extends Controller
             'product_image' => 'required'
         ]);
 
-        $product = new Product();
-
-        $product->name = $request->product_name;
-        $product->description = $request->product_description;
-        $product->price = $request->product_price;
-        $product->quantity = $request->product_quantity;
+       $product = new Product();
+       $product->name = $validated['product_name'];
+       $product->description = $validated['product_description'];
+       $product->price = $validated['product_price'];
+       $product->quantity = $validated['product_quantity'];
 
         $image = $request->file('product_image');
         $image_name = uniqid() . '.' . $image->getClientOriginalExtension();
@@ -76,18 +75,20 @@ class AdminController extends Controller
 
     public function update_products(Request $request, string $id)
     {
-        $request->validate([
-            'product_name' => 'required|string|max:255',
-            'product_description' => 'required|string',
-            'product_price' => 'required|numeric',
-            'product_quantity' => 'required|integer',
-            'product_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        $validated = $request->validate([
+            'product_name' => 'sometimes|string|max:255',
+            'product_description' => 'sometimes|string',
+            'product_price' => 'sometimes|numeric',
+            'product_quantity' => 'sometimes|integer',
+            'product_image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
         $product = Product::findOrFail($id);
-        $product->name = $request->input('product_name');
-        $product->description = $request->input('product_description');
-        $product->price = $request->input('product_price');
-        $product->quantity = $request->input('product_quantity');
+        $product->name = $validated['product_name'];
+        $product->description = $validated['product_description'];
+        $product->price = $validated['product_price'];
+        $product->quantity = $validated['product_quantity'];
+       
         if ($request->hasFile('product_image')) {
 
             if ($file = $product->image) {
