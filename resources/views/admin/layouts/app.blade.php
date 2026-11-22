@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-coreui-theme="dark">
 
 @include('admin.layouts.css')
 
