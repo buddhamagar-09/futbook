@@ -170,7 +170,9 @@ class UserController extends Controller
             return redirect()->route('admin.view.products');
         }
 
-        return view('admin.products.viewproduct', compact('productlist'));
+        return view('admin.products.viewproduct', [
+            'productlist' => $productlist,
+        ]);
     }
 
 
@@ -187,6 +189,8 @@ public function search(Request $request)
         ->orWhere('description', 'like', '%' . $searchTerm . '%')
         ->get();
 
-    return view('frontend.products', compact('productlist'));
+    return view('frontend.products', [
+        'productlist' => $productlist,
+    ]);
 }
 }
